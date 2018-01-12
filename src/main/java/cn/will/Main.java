@@ -2,23 +2,12 @@ package cn.will;
 
 import cn.will.controller.TitleBarController;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -45,7 +34,6 @@ public class Main extends Application{
         primaryStage.getIcons().add(new Image("img/music-icon32.png"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
     }
 
     public void loadMainStage(){
@@ -77,7 +65,7 @@ public class Main extends Application{
 
     private HBox loadTitleBar(Stage primaryStage){
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("fxml/title-bar.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("fxml/titleBar.fxml"));
         Parent root = null;
         try {
             root = loader.load();

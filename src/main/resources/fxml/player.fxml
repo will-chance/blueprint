@@ -5,14 +5,15 @@
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="670.0" prefWidth="1020.0" stylesheets="@../css/player.css">
     <top>
+        <fx:include source="titleBar.fxml"/>
     </top>
     <left>
-        <fx:include source="user-left.fxml"/>
+        <fx:include source="userLeft.fxml"/>
     </left>
     <center>
-        <fx:include source="album-detail.fxml"/>
+        <fx:include source="albumDetail.fxml"/>
     </center>
     <bottom>
-        <fx:include source="play-bar.fxml"/>
+        <fx:include source="playBar.fxml"/>
     </bottom>
 </BorderPane>

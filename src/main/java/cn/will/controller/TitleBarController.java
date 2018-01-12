@@ -1,16 +1,12 @@
 package cn.will.controller;
 
+import de.felixroske.jfxsupport.FXMLController;
+import de.felixroske.jfxsupport.GUIState;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 /**
  * Created on 2018-01-12 2:01 PM
@@ -19,6 +15,7 @@ import javafx.stage.Window;
  * Project: blueprint
  * Desc:
  */
+@FXMLController
 public class TitleBarController {
 
     @FXML private HBox root;
@@ -31,6 +28,7 @@ public class TitleBarController {
     private void initialize(){
         initCloseBtn();
         initMinimumBtn();
+        initTitleBarAction(GUIState.getStage());
     }
 
     private void initCloseBtn(){

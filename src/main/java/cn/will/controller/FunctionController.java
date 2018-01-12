@@ -10,6 +10,7 @@ import javafx.scene.control.Hyperlink;
  * Project: blueprint
  * Desc:
  */
+
 public class FunctionController {
 
     @FXML private Hyperlink create;
