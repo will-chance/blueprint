@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:id="root"
+      fx:controller="cn.will.controller.TitleBarController"
+      styleClass="root"
+      prefHeight="50.0" prefWidth="1000.0" stylesheets="@../css/title-bar.css">
+    <HBox fx:id="logo" spacing="5" prefWidth="250" minWidth="250" maxWidth="250">
+        <HBox>
+            <padding>
+                <Insets top="12" right="0" bottom="2" left="10"/>
+            </padding>
+            <ImageView>
+                <Image url="@../img/music-icon-white-32.png"/>
+            </ImageView>
+        </HBox>
+        <Text text="Blueprint" styleClass="logo-text"/>
+    </HBox>
+    <HBox fx:id="search" spacing="2" prefWidth="400" minWidth="400" maxWidth="400">
+        <padding>
+            <Insets top="15" right="2" bottom="10" left="2"/>
+        </padding>
+        <TextField promptText="music/album/artist"
+                   prefWidth="150" minWidth="150" maxWidth="150"
+                   prefHeight="30" minHeight="30" maxHeight="30"
+        />
+        <Button fx:id="searchBtn" styleClass="control-btn" prefHeight="30" minHeight="30" maxHeight="30">
+            <graphic>
+                <ImageView>
+                    <Image url="@../img/search16.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+    <HBox fx:id="userInfo" spacing="4" minWidth="300" prefWidth="268">
+        <padding>
+            <Insets top="15" right="5" bottom="10" left="5"/>
+        </padding>
+        <ImageView>
+            <Image url="@../img/user-white-32.png"/>
+        </ImageView>
+        <Text text="Will" style="-fx-font-size: 20;-fx-fill: white;"/>
+    </HBox>
+
+    <HBox spacing="4" >
+        <padding>
+            <Insets top="15" right="2" bottom="10" left="2"/>
+        </padding>
+        <Separator orientation="VERTICAL" style="-fx-background-color: #7c807d;"
+                   valignment="CENTER"
+                   maxWidth="1" minWidth="1"/>
+        <Button fx:id="minimumBtn" styleClass="control-btn">
+            <graphic>
+                <ImageView>
+                    <Image url="@../img/minimum16.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="closeBtn" styleClass="control-btn">
+            <graphic>
+                <ImageView>
+                    <Image url="@../img/close16.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+</HBox>

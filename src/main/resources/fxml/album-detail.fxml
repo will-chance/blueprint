@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cn.will.controller.AlbumDetailController"
+            prefHeight="570" prefWidth="780">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <VBox spacing="20">
+        <HBox fx:id="preview" spacing="20"
+              maxWidth="200" minWidth="200" prefWidth="200"
+              maxHeight="200" minHeight="200" prefHeight="200">
+            <HBox>
+                <ImageView>
+                    <Image url="@../img/music/timg.jpg"/>
+                </ImageView>
+            </HBox>
+            <VBox spacing="10">
+                <HBox spacing="2" minWidth="520" maxWidth="520" prefWidth="520">
+                    <Label fx:id="albumName" text="我是邮差，你是一封信"
+                           minWidth="390" maxWidth="390" prefWidth="390"
+                           style="-fx-font-size: 25px;-fx-font-weight: bold;"/>
+                    <VBox>
+                        <Label text="Contain" wrapText="true"
+                               minWidth="45" maxWidth="45" prefWidth="45" textAlignment="RIGHT"
+                               style="-fx-font-size: 12px;"/>
+                        <Label fx:id="containNum" text="15" textAlignment="RIGHT"
+                               minWidth="45" maxWidth="45" prefWidth="45" />
+                    </VBox>
+
+                    <Separator orientation="VERTICAL" />
+                    <VBox>
+
+                        <Label text="Play Times" wrapText="true"
+                               minWidth="70" maxWidth="70" prefWidth="70" textAlignment="RIGHT"
+                               style="-fx-font-size: 12px;"/>
+                        <Label fx:id="playTimes" text="37 million" textAlignment="RIGHT"
+                               minWidth="70" maxWidth="70" prefWidth="70"/>
+                    </VBox>
+                </HBox>
+
+                <HBox fx:id="creatorInfo" spacing="2">
+                    <Label fx:id="creatorLabel" text="will"
+                           style="-fx-font-size: 15px;"/>
+                    <Label text="created on "
+                           style="-fx-font-size: 15px;"/>
+                    <Label fx:id="createLabel" text="2017-08-14"
+                           style="-fx-font-size: 15px;"/>
+                </HBox>
+
+                <HBox spacing="10">
+                    <Button text="Play All">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../img/play16.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button text="Favorite">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../img/unfavorite16.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </HBox>
+
+                <VBox spacing="4">
+                    <Text text="DESC :"></Text>
+                    <Label fx:id="descLabel" text="1222222222222222222222222222222222"/>
+                </VBox>
+            </VBox>
+        </HBox>
+        <TableView prefWidth="745" prefHeight="285">
+            <columns>
+                <TableColumn minWidth="30" maxWidth="30" prefWidth="30">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="title" minWidth="180" maxWidth="180" prefWidth="180">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="title"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="artist" minWidth="170" maxWidth="170" prefWidth="170">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="artist"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="album" minWidth="180" maxWidth="180" prefWidth="180">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="album"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="duration" minWidth="100" maxWidth="100" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="duration"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+</ScrollPane>

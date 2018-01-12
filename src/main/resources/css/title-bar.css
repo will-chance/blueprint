@@ -1,0 +1,27 @@
+.root{
+    -fx-background-color: #1296db;
+}
+.logo-text{
+    -fx-font-size: 40px;
+    -fx-fill: white;
+    /*-fx-fill:#1296db;*/
+    /*-fx-padding: 2 1 2 1;*/
+}
+
+.control-btn{
+    -fx-background-color: #1296db;
+    -fx-pref-height: 30;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+    -fx-pref-width: 30;
+    -fx-max-width: 30;
+    -fx-min-width: 30;
+}
+.separator *.line {
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 2 0; /* its make really one-pixel-border */
+    -fx-border-color: grey;
+    -fx-background-color: grey;
+}
+
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="670.0" prefWidth="1020.0" stylesheets="@../css/player.css">
+    <top>
+    </top>
+    <left>
+        <fx:include source="user-left.fxml"/>
+    </left>
+    <center>
+        <fx:include source="album-detail.fxml"/>
+    </center>
+    <bottom>
+        <fx:include source="play-bar.fxml"/>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      prefHeight="50.0" prefWidth="1000.0">
+    <HBox fx:id="controlBox" spacing="8">
+        <HBox.margin>
+            <Insets top="20" right="10" bottom="10" left="15"/>
+        </HBox.margin>
+        <Label>
+            <graphic>
+                <ImageView>
+                    <Image url="@../img/previous32.png"/>
+                </ImageView>
+            </graphic>
+        </Label>
+        <Label>
+            <graphic>
+                <ImageView>
+                    <Image url="@../img/play32.png"/>
+                </ImageView>
+            </graphic>
+        </Label>
+        <Label>
+            <graphic>
+                <ImageView>
+                    <Image url="@../img/next32.png"/>
+                </ImageView>
+            </graphic>
+        </Label>
+    </HBox>
+    <HBox fx:id="playProgressBox" spacing="4">
+        <padding>
+            <Insets top="30" right="5" bottom="20" left="5"/>
+        </padding>
+        <Label fx:id="startLabel" text="00:00" minWidth="30" maxWidth="30" prefWidth="30"/>
+        <Slider fx:id="" minWidth="600" maxWidth="600" prefWidth="600"/>
+        <Label fx:id="endLabel" text="00:00" minWidth="30" maxWidth="30" prefWidth="30"/>
+    </HBox>
+    <HBox fx:id="volumeControlBox" spacing="5">
+        <padding>
+            <Insets top="20" right="10" bottom="10" left="5"/>
+        </padding>
+        <Label>
+            <graphic>
+                <ImageView>
+                    <Image url="@../img/volume-on32.png"></Image>
+                </ImageView>
+            </graphic>
+        </Label>
+        <ProgressBar progress="0.5" minHeight="12" prefHeight="12" maxHeight="12">
+            <HBox.margin>
+                <Insets top="10" left="10"/>
+            </HBox.margin>
+        </ProgressBar>
+    </HBox>
+</HBox>
