@@ -1,12 +1,10 @@
 package cn.will;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -20,20 +18,18 @@ public class CollectMusic {
 
     private ObjectMapper mapper;
 
+    private String TOP_LIST_URL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.billboard.billList&type=1&size=20&offset=0&format=json";
+
     @Before
     public void before(){
         mapper = new ObjectMapper();
     }
 
     @Test
-    public void getFamiliarJsoup(){
-        String targetURL = "https://music.163.com/#/playlist?id=44776942";
+    public void crawl(){
+        File data = new File("./data.json");
         try {
-            Document document = Jsoup.connect(targetURL).get();
-            Elements elements = document.select(".m-table");
-//            Elements elements = document.getElementsByClass("m-table");
-//            Elements elements = document.getElementsByTag("table");
-            System.out.println(elements.toString());
+            System.out.println(mapper.readTree(data));
         } catch (IOException e) {
             e.printStackTrace();
         }

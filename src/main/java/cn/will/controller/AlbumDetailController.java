@@ -3,15 +3,16 @@ package cn.will.controller;
 import cn.will.po.Music;
 import cn.will.service.MusicService;
 import cn.will.view.MusicListCell;
-import de.felixroske.jfxsupport.FXMLController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
@@ -23,9 +24,8 @@ import java.util.List;
  * Project: blueprint
  * Desc:
  */
-@ComponentScan
-@FXMLController
-public class AlbumDetailController {
+@Component
+public class AlbumDetailController implements ViewController{
 
     @Autowired private MusicService musicService;
 
@@ -37,7 +37,7 @@ public class AlbumDetailController {
 
     @FXML private Label albumName;
 
-    @FXML private Image albumImg;
+    @FXML private ImageView albumImg;
 
     @FXML private Label creatorLabel;
 
@@ -77,4 +77,13 @@ public class AlbumDetailController {
         createLabel.setText(new Date(System.currentTimeMillis()).toString());
     }
 
+    @Override
+    public void initPrimaryStage(Stage primaryStage) {
+
+    }
+
+    @Override
+    public void setBorderPane(BorderPane loader) {
+
+    }
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cn.will.controller.SearchResultController"
+            prefHeight="670.0" prefWidth="1020.0" stylesheets="@../css/list.css">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <VBox spacing="10">
+                <HBox alignment="CENTER">
+                    <Label fx:id="resultPreview" text="No Result"></Label>
+                </HBox>
+                <TableView fx:id="result" prefWidth="745" styleClass="table-header">
+                    <columns>
+                        <TableColumn text="id" minWidth="50" maxWidth="50" prefWidth="50">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="id"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="actionColumn" text="Act" minWidth="24" maxWidth="24" prefWidth="24">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="favoriteIcon"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Title" minWidth="190" maxWidth="190" prefWidth="190">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="title"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Artist" minWidth="200" maxWidth="200" prefWidth="170">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="artist"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Album" minWidth="190" maxWidth="190" prefWidth="190">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="album"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Duration" minWidth="105" maxWidth="105" prefWidth="108">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="duration"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </VBox>
+</ScrollPane>

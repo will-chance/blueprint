@@ -1,13 +1,23 @@
 package cn.will.controller;
 
-import de.felixroske.jfxsupport.FXMLController;
-import de.felixroske.jfxsupport.GUIState;
+import cn.will.po.Music;
+import cn.will.service.MusicService;
+import cn.will.util.FXMLLoaderHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Created on 2018-01-12 2:01 PM
@@ -16,10 +26,14 @@ import javafx.stage.Stage;
  * Project: blueprint
  * Desc:
  */
-@FXMLController
-public class TitleBarController {
+@Component
+public class TitleBarController implements ViewController{
 
-    @FXML private HBox root;
+    @Autowired private MusicService musicService;
+
+    private BorderPane root;
+
+    @FXML private HBox titleBar;
 
     @FXML private Button closeBtn;
 
@@ -27,12 +41,13 @@ public class TitleBarController {
 
     @FXML private Button searchBtn;
 
+    @FXML private TextField searchContent;
+
     @FXML
     private void initialize(){
         initCloseBtn();
         initMinimumBtn();
         initSearchBtn();
-        initTitleBarAction(GUIState.getStage());
     }
 
     private void initCloseBtn(){
@@ -57,18 +72,25 @@ public class TitleBarController {
         button.setOnMouseExited(e->button.getScene().setCursor(Cursor.DEFAULT));
     }
 
+    @FXML
+    public void search(){
+        String keyword = "%"+searchContent.getText()+"%";
+        if (null == keyword || "".equals(keyword)) return;
+        List<Music> musics = musicService.searchMusics(keyword);
+        root.setCenter(loadSearchResultPane(musics));
+    }
+
     /**
      * 加载该标题栏后一定要被调用。
      */
-
-    private void initTitleBarAction(final Stage primaryStage){
+    public void initTitleBarAction(final Stage primaryStage){
         final Delta delta = new Delta();
-        root.setOnMousePressed(event -> {
+        titleBar.setOnMousePressed(event -> {
             delta.x = primaryStage.getX() - event.getScreenX();
             delta.y = primaryStage.getY() - event.getScreenY();
         });
 
-        root.setOnMouseDragged(event -> {
+        titleBar.setOnMouseDragged(event -> {
             primaryStage.setX(event.getScreenX() + delta.x);
             primaryStage.setY(event.getScreenY() + delta.y);
         });
@@ -78,4 +100,25 @@ public class TitleBarController {
         double x;
         double y;
     }
+
+    @Override
+    public void initPrimaryStage(Stage primaryStage) {
+        initTitleBarAction(primaryStage);
+    }
+
+
+    @Override
+    public void setBorderPane(BorderPane pane) {
+        this.root = pane;
+    }
+
+    private ScrollPane loadSearchResultPane(List<Music> musics){
+        Parent pane = null;
+        FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/searchResult.fxml");
+        pane = FXMLLoaderHelper.load(loader);
+        SearchResultController controller = loader.getController();
+        controller.showResult(musics);
+        return (ScrollPane) pane;
+    }
+
 }

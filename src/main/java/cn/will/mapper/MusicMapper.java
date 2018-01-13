@@ -1,6 +1,7 @@
 package cn.will.mapper;
 
 import cn.will.po.Music;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ import java.util.List;
  */
 public interface MusicMapper {
     List<Music> listNewestMusic();
+
+    List<Music> searchMusicByTitle(@Param("keyword") String keyword);
 }

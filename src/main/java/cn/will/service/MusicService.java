@@ -35,7 +35,7 @@ public class MusicService {
      * @return
      */
     public List<Music> searchMusics(String keyword){
-        return null;
+        return musicMapper.searchMusicByTitle(keyword);
     }
 
     public List<Music> listNewest(){

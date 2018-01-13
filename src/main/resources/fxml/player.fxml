@@ -3,9 +3,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cn.will.controller.PlayerController"
             prefHeight="670.0" prefWidth="1020.0" stylesheets="@../css/player.css">
     <top>
-        <fx:include source="titleBar.fxml"/>
     </top>
     <left>
         <fx:include source="userLeft.fxml"/>

@@ -1,9 +1,11 @@
 package cn.will.controller;
 
-import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import org.springframework.stereotype.Component;
 
 /**
  * Created on 2018-01-13 12:46 AM
@@ -12,8 +14,10 @@ import javafx.scene.control.Label;
  * Project: blueprint
  * Desc:
  */
-@FXMLController
-public class UserLeftController {
+@Component
+public class UserLeftController implements ViewController {
+
+    private BorderPane root;
 
     @FXML private Label purchaseMusicLabel;
     @FXML private Label favoriteMusicLabel;
@@ -79,4 +83,13 @@ public class UserLeftController {
 
     }
 
+    @Override
+    public void setBorderPane(BorderPane pane) {
+        root = pane;
+    }
+
+    @Override
+    public void initPrimaryStage(Stage primaryStage) {
+
+    }
 }

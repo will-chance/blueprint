@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:id="root"
+      fx:id="titleBar"
       fx:controller="cn.will.controller.TitleBarController"
       styleClass="root"
       prefHeight="50.0" prefWidth="1000.0" stylesheets="@../css/title-bar.css">
@@ -26,11 +26,13 @@
         <padding>
             <Insets top="15" right="2" bottom="10" left="2"/>
         </padding>
-        <TextField promptText="music/album/artist"
+        <TextField fx:id="searchContent" promptText="music/album/artist"
                    prefWidth="150" minWidth="150" maxWidth="150"
                    prefHeight="30" minHeight="30" maxHeight="30"
         />
-        <Button fx:id="searchBtn" styleClass="control-btn" prefHeight="30" minHeight="30" maxHeight="30">
+        <Button fx:id="searchBtn" styleClass="control-btn"
+                prefHeight="30" minHeight="30" maxHeight="30"
+                onAction="#search">
             <graphic>
                 <ImageView>
                     <Image url="@../img/search16.png"/>

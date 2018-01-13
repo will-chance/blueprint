@@ -13,4 +13,17 @@
         ORDER BY m.gmt_create DESC;
     </select>
 
+    <select id="searchMusicByTitle" parameterType="String" resultType="Music">
+        SELECT
+          m.title,
+          a.artist_name AS artist,
+          ab.title AS album,
+          m.duration
+        FROM t_music m
+        LEFT JOIN t_artist a ON a.id = m.artist_id
+        LEFT JOIN t_album_music am ON am.music_id = m.id
+        LEFT JOIN t_album ab ON ab.id = am.album_id
+        WHERE m.title LIKE #{keyword}
+        ORDER BY m.publish_time DESC LIMIT 20
+    </select>
 </mapper>

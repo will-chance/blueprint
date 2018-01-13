@@ -18,13 +18,13 @@
               maxWidth="200" minWidth="200" prefWidth="200"
               maxHeight="200" minHeight="200" prefHeight="200">
             <HBox>
-                <ImageView>
-                    <Image fx:id="albumImg" url="@../img/music/timg.jpg"/>
+                <ImageView fx:id="albumImg">
+                    <Image url="@../img/music/timg.jpg"/>
                 </ImageView>
             </HBox>
             <VBox spacing="10">
                 <HBox spacing="2" minWidth="520" maxWidth="520" prefWidth="520">
-                    <Label fx:id="albumName" text="我是邮差，你是一封信"
+                    <Label fx:id="albumName"
                            minWidth="390" maxWidth="390" prefWidth="390"
                            style="-fx-font-size: 25px;-fx-font-weight: bold;"/>
                     <VBox>

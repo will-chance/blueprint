@@ -8,4 +8,6 @@ package cn.will.po;
  * Desc:
  */
 public class Album {
+    private int id;
+
 }
