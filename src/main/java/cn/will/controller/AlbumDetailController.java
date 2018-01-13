@@ -1,6 +1,5 @@
 package cn.will.controller;
 
-import cn.will.custom.ImageTableCell;
 import cn.will.po.Music;
 import cn.will.service.MusicService;
 import cn.will.view.MusicListCell;
@@ -9,13 +8,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 

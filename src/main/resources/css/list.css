@@ -3,7 +3,7 @@
     -fx-border-color: -fx-box-border;
     -fx-font-size: 12px;
     -fx-font-weight: 1px;
-    -fx-background-color: transparent;
+    -fx-background-color: -fx-control-inner-background-alt;
 }
 .table-view .column-header .label {
     -fx-alignment: CENTER_LEFT;

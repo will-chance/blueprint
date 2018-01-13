@@ -6,7 +6,6 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-<?import cn.will.custom.ImageTableCell?>
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cn.will.controller.AlbumDetailController" stylesheets="@../css/list.css"
@@ -86,7 +85,7 @@
                         <PropertyValueFactory property="id"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="actionColumn" minWidth="20" maxWidth="20" prefWidth="20">
+                <TableColumn fx:id="actionColumn" text="Act" minWidth="24" maxWidth="24" prefWidth="24">
                     <cellValueFactory>
                         <PropertyValueFactory property="favoriteIcon"/>
                     </cellValueFactory>
