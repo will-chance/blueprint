@@ -42,7 +42,7 @@ public class MusicListCell {
         this.title = new Text(music.getTitle());
         this.artist = new Text(music.getArtist());
         this.album = new Text(music.getAlbum());
-        this.duration = new Text(music.getDuration());
+        this.duration = new Text(String.valueOf(music.getDuration()));
         this.favorite = favorite;
         initFavoriteIcon(favorite);
         setHoverCursor(artist);

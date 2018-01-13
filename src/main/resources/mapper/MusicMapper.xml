@@ -26,4 +26,20 @@
         WHERE m.title LIKE #{keyword}
         ORDER BY m.publish_time DESC LIMIT 20
     </select>
+
+    <insert id="insertBatch">
+        INSERT INTO t_music
+        (id,title,artist_id,`language`,publish_time,lyric,play_times,duration,cover_img) VALUES
+        <foreach collection="musics" item="music" separator=",">
+            (#{music.id},#{music.title},#{music.artistId},#{music.language},#{music.publishTime},#{music.lyric},
+            #{music.hot},#{music.duration},#{music.cover})
+        </foreach>
+    </insert>
+
+    <insert id="insertBatchMusicAlbum">
+        INSERT INTO t_album_music(album_id,music_id) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.albumId},#{item.musicId})
+        </foreach>
+    </insert>
 </mapper>

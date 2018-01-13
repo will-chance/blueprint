@@ -1,5 +1,7 @@
 package cn.will.po;
 
+import java.util.Objects;
+
 /**
  * Created on 2018-01-13 1:03 AM
  * Author: Bowei Chan
@@ -47,5 +49,19 @@ public class Artist {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artist artist = (Artist) o;
+        return id == artist.id;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
     }
 }

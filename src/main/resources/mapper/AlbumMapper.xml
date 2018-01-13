@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.will.mapper.AlbumMapper">
+    <insert id="insertBatch">
+      INSERT INTO t_album(id,title,cover_img,play_times) VALUES
+      <foreach collection="albums" separator="," item="album">
+          (#{album.id},#{album.title},#{album.cover},#{album.hot})
+      </foreach>
+    </insert>
+
+    <select id="selectByPrimaryKey" parameterType="int" resultType="Album">
+        SELECT
+          a.id,
+          a.title
+        FROM t_album a
+        WHERE a.id = #{id}
+    </select>
+</mapper>
