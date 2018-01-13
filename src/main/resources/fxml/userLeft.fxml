@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cn.will.controller.UserLeftController" stylesheets="@../css/user-left.css"
             prefHeight="570.0" prefWidth="220.0" minWidth="220" maxWidth="220">
     <VBox>
         <padding>
@@ -14,49 +15,49 @@
         <Label text="Music" style="-fx-text-fill: #1296db;-fx-font-size: 20"/>
         <VBox spacing="10">
             <VBox.margin>
-                <Insets top="5" bottom="5" left="10"/>
+                <Insets top="5" bottom="5" left="20"/>
             </VBox.margin>
             <HBox spacing="4">
-                <Hyperlink text="Purchased" style="-fx-font-size: 15;-fx-text-fill: #1296db;">
+                <Label fx:id="purchaseMusicLabel" text="Purchased" styleClass="label-show">
                     <graphic>
                         <ImageView>
                             <Image url="@../img/purchase16.png"/>
                         </ImageView>
                     </graphic>
-                </Hyperlink>
+                </Label>
             </HBox>
             <HBox spacing="4">
-                <Hyperlink text="Favorite" style="-fx-font-size: 15;-fx-text-fill: #1296db;">
+                <Label fx:id="favoriteMusicLabel" text="Favorite" styleClass="label-show">
                     <graphic>
                         <ImageView>
                             <Image url="@../img/favorite16.png"/>
                         </ImageView>
                     </graphic>
-                </Hyperlink>
+                </Label>
             </HBox>
         </VBox>
         <Label text="Play List" style="-fx-text-fill: #1296db;-fx-font-size: 20"/>
-        <VBox spacing="5">
+        <VBox spacing="10">
             <VBox.margin>
-                <Insets top="5" bottom="5" left="10"/>
+                <Insets top="5" bottom="5" left="20"/>
             </VBox.margin>
             <HBox spacing="4">
-                <Hyperlink text="Create" style="-fx-font-size: 15">
+                <Label fx:id="createPlayListLabel" text="Create" styleClass="label-show">
                     <graphic>
                         <ImageView>
                             <Image url="@../img/play-list16.png"/>
                         </ImageView>
                     </graphic>
-                </Hyperlink>
+                </Label>
             </HBox>
             <HBox spacing="4">
-                <Hyperlink text="Favorite" style="-fx-font-size: 15;-fx-text-fill: #1296db;">
+                <Label fx:id="favoritePlayListLabel" text="Favorite" styleClass="label-show">
                     <graphic>
                         <ImageView>
                             <Image url="@../img/favorite16.png"/>
                         </ImageView>
                     </graphic>
-                </Hyperlink>
+                </Label>
             </HBox>
         </VBox>
     </VBox>

@@ -16,6 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
  * Desc:
  */
 @MapperScan("cn.will.mapper")
+@ComponentScan(basePackages = "cn.will.service")
 @ComponentScan(basePackages = "fxml")
 @ComponentScan(basePackages = "cn.will.controller")
 @SpringBootApplication
@@ -38,3 +39,4 @@ public class Main extends AbstractJavaFxApplicationSupport {
         }
     }
 }
+

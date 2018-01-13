@@ -4,6 +4,7 @@ import de.felixroske.jfxsupport.FXMLController;
 import de.felixroske.jfxsupport.GUIState;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -24,15 +25,19 @@ public class TitleBarController {
 
     @FXML private Button minimumBtn;
 
+    @FXML private Button searchBtn;
+
     @FXML
     private void initialize(){
         initCloseBtn();
         initMinimumBtn();
+        initSearchBtn();
         initTitleBarAction(GUIState.getStage());
     }
 
     private void initCloseBtn(){
         closeBtn.setOnAction( e->Platform.exit());
+        setOnMouseHoverAction(closeBtn);
     }
 
     private void initMinimumBtn(){
@@ -40,13 +45,23 @@ public class TitleBarController {
             Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
             stage.setIconified(true);
         });
+        setOnMouseHoverAction(minimumBtn);
+    }
+
+    private void initSearchBtn(){
+        setOnMouseHoverAction(searchBtn);
+    }
+
+    private void setOnMouseHoverAction(Button button){
+        button.setOnMouseEntered(e -> button.getScene().setCursor(Cursor.HAND));
+        button.setOnMouseExited(e->button.getScene().setCursor(Cursor.DEFAULT));
     }
 
     /**
      * 加载该标题栏后一定要被调用。
      */
 
-    public void initTitleBarAction(final Stage primaryStage){
+    private void initTitleBarAction(final Stage primaryStage){
         final Delta delta = new Delta();
         root.setOnMousePressed(event -> {
             delta.x = primaryStage.getX() - event.getScreenX();

@@ -14,6 +14,10 @@ public class User {
 
     private String password;
 
+    private String gender;
+
+    private Double balance;
+
     public int getId() {
         return id;
     }
@@ -36,5 +40,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 }

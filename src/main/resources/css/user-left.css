@@ -1,0 +1,10 @@
+.label-click{
+    -fx-border-color: #1296db;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 0 2;
+}
+
+.label-show{
+    -fx-font-size: 15;
+    -fx-text-fill: #1296db;
+}

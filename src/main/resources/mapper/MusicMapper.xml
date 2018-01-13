@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.will.mapper.MusicMapper">
+
+    <select id="listNewestMusic" resultType="Music">
+        SELECT
+          m.title,
+          a.artist_name AS artist,
+          ab.title AS album,
+          m.duration
+        FROM t_music m,t_artist a,t_album_music am,t_album ab
+        WHERE m.artist_id = a.id AND am.music_id = m.id AND ab.id = am.album_id
+        ORDER BY m.gmt_create DESC;
+    </select>
+
+</mapper>

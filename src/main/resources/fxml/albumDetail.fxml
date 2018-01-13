@@ -6,9 +6,10 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
+<?import cn.will.custom.ImageTableCell?>
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="cn.will.controller.AlbumDetailController"
+            fx:controller="cn.will.controller.AlbumDetailController" stylesheets="@../css/list.css"
             prefHeight="570" prefWidth="780">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
@@ -19,7 +20,7 @@
               maxHeight="200" minHeight="200" prefHeight="200">
             <HBox>
                 <ImageView>
-                    <Image url="@../img/music/timg.jpg"/>
+                    <Image fx:id="albumImg" url="@../img/music/timg.jpg"/>
                 </ImageView>
             </HBox>
             <VBox spacing="10">
@@ -56,7 +57,7 @@
                 </HBox>
 
                 <HBox spacing="10">
-                    <Button text="Play All">
+                    <Button fx:id="playAllBtn" text="Play All" onAction="#showMusicList">
                         <graphic>
                             <ImageView>
                                 <Image url="@../img/play16.png"/>
@@ -74,33 +75,38 @@
 
                 <VBox spacing="4">
                     <Text text="DESC :"></Text>
-                    <Label fx:id="descLabel" text="1222222222222222222222222222222222"/>
+                    <Label fx:id="descLabel" text=""/>
                 </VBox>
             </VBox>
         </HBox>
-        <TableView prefWidth="745" prefHeight="285">
+        <TableView fx:id="musicList" prefWidth="745" styleClass="table-header">
             <columns>
-                <TableColumn minWidth="30" maxWidth="30" prefWidth="30">
+                <TableColumn text="id" minWidth="50" maxWidth="50" prefWidth="50">
                     <cellValueFactory>
                         <PropertyValueFactory property="id"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="title" minWidth="180" maxWidth="180" prefWidth="180">
+                <TableColumn fx:id="actionColumn" minWidth="20" maxWidth="20" prefWidth="20">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="favoriteIcon"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Title" minWidth="190" maxWidth="190" prefWidth="190">
                     <cellValueFactory>
                         <PropertyValueFactory property="title"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="artist" minWidth="170" maxWidth="170" prefWidth="170">
+                <TableColumn text="Artist" minWidth="200" maxWidth="200" prefWidth="170">
                     <cellValueFactory>
                         <PropertyValueFactory property="artist"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="album" minWidth="180" maxWidth="180" prefWidth="180">
+                <TableColumn text="Album" minWidth="190" maxWidth="190" prefWidth="190">
                     <cellValueFactory>
                         <PropertyValueFactory property="album"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="duration" minWidth="100" maxWidth="100" prefWidth="100">
+                <TableColumn text="Duration" minWidth="105" maxWidth="105" prefWidth="108">
                     <cellValueFactory>
                         <PropertyValueFactory property="duration"/>
                     </cellValueFactory>
