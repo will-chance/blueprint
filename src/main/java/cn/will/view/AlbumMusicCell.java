@@ -31,7 +31,13 @@ public class AlbumMusicCell extends HBox{
     private Label id;
 
     public AlbumMusicCell(AlbumMusicVO music) {
-        this.id = new Label(String.valueOf(music.getId()));
+        int id = music.getId();
+        if (id <10){
+            this.id = new Label("0"+id);
+        }else {
+            this.id = new Label(String.valueOf(id));
+        }
+
         this.title = new Label(music.getTitle());
         this.duration = new Label(TimeUtil.Secend2Minute(music.getDuration()));
         this.favorite = music.isFavorite();

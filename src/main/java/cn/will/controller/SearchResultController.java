@@ -26,7 +26,7 @@ import java.util.List;
 public class SearchResultController implements ViewController{
     private ObservableList<MusicListCell> musics;
 
-    @Autowired private BorderPane root;
+    @Autowired private BorderPane rootPane;
 
     @FXML private TableView result;
 
@@ -58,6 +58,5 @@ public class SearchResultController implements ViewController{
 
     @Override
     public void setBorderPane(BorderPane pane) {
-        root = pane;
     }
 }

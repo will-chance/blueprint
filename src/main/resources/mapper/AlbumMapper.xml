@@ -26,11 +26,12 @@
         (
             SELECT
                 m.id AS music_id,
-                m.title,
+                m.title AS music_title,
                 m.duration,
                 am.album_id,
-                ab.title AS album_name,
-                ab.cover_img
+                ab.title AS album_title,
+                ab.cover_img,
+                a.id AS artist_id
             FROM
                 t_music m,
                 t_artist a,

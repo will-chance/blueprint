@@ -17,8 +17,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
@@ -69,11 +72,12 @@ public class Main {
         return BootFX.instance;
     }
 
+    @Component
     public static class BootFX extends Application {
 
         private static BootFX instance;
 
-        private BorderPane root;
+        @Resource(name = "rootPane") BorderPane rootPane;
 
         public static ConfigurableApplicationContext getContext(){
             return applicationContext;
@@ -85,10 +89,17 @@ public class Main {
             BootFX.instance = this;
         }
 
-        private Parent loadPane(String location,Stage primaryStage) throws IOException {
-            FXMLLoader loader = createLoader(location);
+        /**
+         * 获取根布局
+         * 获取controller没有使用spring工厂
+         * @param location
+         * @return
+         * @throws IOException
+         */
+        private Parent loadPane(String location) throws IOException {
+            FXMLLoader loader = new FXMLLoader(Charset.forName("UTF-8"));
+            loader.setLocation(new ClassPathResource(location).getURL());
             Parent root = loader.load();
-            ((ViewController)loader.getController()).initPrimaryStage(primaryStage);
             return root;
         }
 
@@ -120,24 +131,35 @@ public class Main {
         }
 
         @Bean
-        public BorderPane getRootPane(){
+        @Scope(value = "singleton")
+        public BorderPane rootPane(){
+            //加载主页面框架
+            BorderPane root = null;
+            try {
+                root = (BorderPane) loadPane("fxml/player.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return root;
         }
 
         @Override
         public void start(Stage primaryStage) throws Exception {
-            //加载主页面框架
-            BorderPane root = (BorderPane) loadPane("fxml/player.fxml",primaryStage);
-            this.root = root;
+            this.rootPane = (BorderPane) BootFX.getContext().getBean("rootPane");
+
             //加载标题栏
-            Parent titleBar = loadPane("fxml/titleBar.fxml", primaryStage,root);
+            Parent titleBar = loadPane("fxml/titleBar.fxml", primaryStage,rootPane);
             //设置标题栏
-            root.setTop(titleBar);
+            rootPane.setTop(titleBar);
+
+            //加载中间面板
+            Parent center = loadPane("fxml/album-detail.fxml",primaryStage,rootPane);
+            rootPane.setCenter(center);
 
             primaryStage.setTitle(APP_TITLE);
-            primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
             primaryStage.getIcons().add(new Image("img/music-icon32.png"));
-            primaryStage.setScene(new Scene(root));
+            primaryStage.setScene(new Scene(rootPane));
             primaryStage.show();
         }
 

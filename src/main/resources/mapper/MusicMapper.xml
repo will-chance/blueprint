@@ -8,6 +8,8 @@
           m.title,
           a.artist_name AS artist,
           ab.title AS album,
+          a.id AS artistId,
+          ab.id AS albumId,
           m.duration
         FROM t_music m,t_artist a,t_album_music am,t_album ab
         WHERE m.artist_id = a.id AND am.music_id = m.id AND ab.id = am.album_id
@@ -27,7 +29,9 @@
                     m.title,
                     a.artist_name AS artist,
                     ab.title AS album,
-                    m.duration
+                    m.duration,
+                    a.id AS artistId,
+                    ab.id AS albumId
                 FROM
                     t_music m
                 LEFT JOIN t_artist a ON a.id = m.artist_id

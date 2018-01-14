@@ -64,12 +64,6 @@ public class AlbumDetailController implements ViewController{
         musicList.setItems(data);
     }
 
-    @FXML
-    private void showMusicList(){
-        ObservableList<MusicResultVO> musics = FXCollections.observableList(musicService.listNewest());
-        musicList.getItems().add(musics);
-    }
-
     private void showRecommend(){
         albumName.setText("Today Recommend");
         containNum.setText("16");

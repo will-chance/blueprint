@@ -40,4 +40,17 @@ public class ArtistMusicController {
         }
         artistAlbum.setItems(cells);
     }
+
+    /**
+     * 设置要显示的数据
+     */
+    public void setData(List<AlbumVO> data){
+        ObservableList<ArtistAlbumCell> cells = FXCollections.observableArrayList();
+        for (int i = 0; i < data.size(); i++) {
+            AlbumVO album = data.get(i);
+            ArtistAlbumCell cell = new ArtistAlbumCell(album);
+            cells.add(cell);
+        }
+        artistAlbum.setItems(cells);
+    }
 }

@@ -37,7 +37,9 @@ public class ArtistAlbumCell extends HBox{
         }
         List<AlbumMusicVO> musics = album.getMusics();
         for (int i=0;i<musics.size();i++){
-            musicList.getItems().add(new AlbumMusicCell(musics.get(i)));
+            AlbumMusicVO music = musics.get(i);
+            music.setId(i+1);
+            musicList.getItems().add(new AlbumMusicCell(music));
         }
         initListView(musicList);
         initLayout(albumCover,albumTitle,musicList);

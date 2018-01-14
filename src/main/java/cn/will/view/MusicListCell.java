@@ -1,18 +1,28 @@
 package cn.will.view;
 
+import cn.will.controller.ArtistMusicController;
+import cn.will.service.AlbumService;
 import cn.will.service.UserService;
+import cn.will.util.FXMLLoaderHelper;
 import cn.will.util.TimeUtil;
+import cn.will.vo.AlbumVO;
 import cn.will.vo.MusicResultVO;
 import fxml.Main;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Created on 2018-01-13 7:42 AM
@@ -25,7 +35,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class MusicListCell{
 
+    @Autowired private BorderPane rootPane;
+
     @Autowired private UserService userService;
+
+    @Autowired private AlbumService albumService;
 
     private ImageView favoriteView = new ImageView(new Image("img/unfavorite16.png"));
 
@@ -66,6 +80,7 @@ public class MusicListCell{
         initToolTip(title);
         initToolTip(artist);
         initToolTip(album);
+        initShowArtistMusicAction();
     }
 
     private void initToolTip(Text text){
@@ -111,6 +126,9 @@ public class MusicListCell{
         }
     }
 
+    /**
+     * 处理 收藏/取消收藏 操作
+     */
     private void initFavoriteAction(){
         favoriteIcon.setOnMouseClicked(e -> {
             if (Main.getCurrentUser() == null) {
@@ -125,6 +143,28 @@ public class MusicListCell{
             favorite = !favorite;
         });
     }
+
+    /**
+     * 处理 点击歌手的动作
+     * 查找歌手的所有音乐并按专辑分开
+     */
+    private void initShowArtistMusicAction(){
+        artist.setOnMouseClicked(e->{
+            System.out.println("mouse click");
+            List<AlbumVO> albums = albumService.listArtistMusic(music.getArtistId());
+            rootPane.setCenter(loadArtistDetailPane(albums));
+        });
+    }
+
+    private ScrollPane loadArtistDetailPane(List<AlbumVO> data){
+        FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/artist-music.fxml");
+        Parent pane = FXMLLoaderHelper.load(loader);
+        ArtistMusicController controller = loader.getController();
+        controller.setData(data);
+        return (ScrollPane) pane;
+    }
+
+    /********Setter/Getter todo replace with lomock***********/
 
     public Label getFavoriteIcon() {
         return favoriteIcon;

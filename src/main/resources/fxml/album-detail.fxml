@@ -8,7 +8,8 @@
 <?import javafx.scene.text.Text?>
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="cn.will.controller.AlbumDetailController" stylesheets="@../css/list.css"
+            fx:controller="cn.will.controller.AlbumDetailController"
+            stylesheets="@../css/list.css"
             prefHeight="570" prefWidth="780">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
@@ -56,7 +57,7 @@
                 </HBox>
 
                 <HBox spacing="10">
-                    <Button fx:id="playAllBtn" text="Play All" onAction="#showMusicList">
+                    <Button fx:id="playAllBtn" text="Play All">
                         <graphic>
                             <ImageView>
                                 <Image url="@../img/play16.png"/>

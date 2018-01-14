@@ -17,6 +17,10 @@ public class MusicResultVO {
 
     private String artist;
 
+    private int artistId;
+
+    private int albumId;
+
     private int duration;
 
     private boolean favorite;
@@ -67,5 +71,21 @@ public class MusicResultVO {
 
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
+    }
+
+    public int getArtistId() {
+        return artistId;
+    }
+
+    public void setArtistId(int artistId) {
+        this.artistId = artistId;
+    }
+
+    public int getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(int albumId) {
+        this.albumId = albumId;
     }
 }

@@ -19,5 +19,5 @@ public interface AlbumMapper {
 
     Album selectByPrimaryKey(Integer id);
 
-    List<AlbumVO> listAlbumMusicByArtistId(int artistId,User user);
+    List<AlbumVO> listAlbumMusicByArtistId(@Param("artistId") int artistId,@Param("user") User user);
 }

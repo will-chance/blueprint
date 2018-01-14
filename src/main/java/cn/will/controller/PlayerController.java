@@ -1,7 +1,5 @@
 package cn.will.controller;
 
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,15 +10,7 @@ import org.springframework.stereotype.Component;
  * Desc:
  */
 @Component
-public class PlayerController implements ViewController{
+public class PlayerController{
 
-    @Override
-    public void initPrimaryStage(Stage primaryStage) {
 
-    }
-
-    @Override
-    public void setBorderPane(BorderPane pane) {
-
-    }
 }
