@@ -3,6 +3,7 @@ package cn.will.service;
 import cn.will.mapper.UserMapper;
 import cn.will.po.User;
 import cn.will.vo.MusicResultVO;
+import fxml.Main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +61,10 @@ public class UserService {
      */
     public boolean puchaseMusic(int musicId){
         return false;
+    }
+
+    public boolean createPlaylist(String title){
+        return userMapper.insertPlaylist(title, Main.getCurrentUser()) >0;
     }
 
 }

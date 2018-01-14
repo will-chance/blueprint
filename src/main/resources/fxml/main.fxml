@@ -6,6 +6,6 @@
             fx:controller="cn.will.controller.PlayerController"
             prefHeight="670.0" prefWidth="1020.0" stylesheets="@../css/player.css">
     <bottom>
-        <fx:include source="playBar.fxml"/>
+        <fx:include source="play-bar.fxml"/>
     </bottom>
 </BorderPane>

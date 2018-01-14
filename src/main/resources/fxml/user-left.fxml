@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.*?>
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="cn.will.controller.UserLeftController" stylesheets="@../css/user-left.css"
+            fx:controller="cn.will.controller.UserLeftController"
+            stylesheets="@../css/user-left.css"
             prefHeight="570.0" prefWidth="220.0" minWidth="220" maxWidth="220">
     <VBox>
         <padding>
@@ -37,28 +38,45 @@
             </HBox>
         </VBox>
         <Label text="Play List" style="-fx-text-fill: #1296db;-fx-font-size: 20"/>
-        <VBox spacing="10">
-            <VBox.margin>
-                <Insets top="5" bottom="5" left="20"/>
-            </VBox.margin>
-            <HBox spacing="4">
-                <Label fx:id="createPlayListLabel" text="Create" styleClass="label-menu">
-                    <graphic>
-                        <ImageView>
-                            <Image url="@../img/play-list16.png"/>
-                        </ImageView>
-                    </graphic>
-                </Label>
+        <HBox>
+            <TitledPane text="Create" expanded="false" prefWidth="174" minWidth="174" maxWidth="174">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../img/play-list16.png"/>
+                    </ImageView>
+                </graphic>
+                <VBox fx:id="createdList"></VBox>
+            </TitledPane>
+            <HBox>
+                <padding>
+                    <Insets top="3"/>
+                </padding>
+                <Button styleClass="create-btn" onAction="#showCreatePlaylistStage"/>
             </HBox>
-            <HBox spacing="4">
-                <Label fx:id="favoritePlayListLabel" text="Favorite" styleClass="label-menu">
-                    <graphic>
-                        <ImageView>
-                            <Image url="@../img/favorite16.png"/>
-                        </ImageView>
-                    </graphic>
-                </Label>
-            </HBox>
-        </VBox>
+        </HBox>
+        <HBox>
+            <TitledPane fx:id="favoritePlaylistPane" text="Favorite"
+                        prefWidth="174" minWidth="174" maxWidth="174"
+                        expanded="true">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../img/favorite16.png"/>
+                    </ImageView>
+                </graphic>
+                <VBox spacing="5">
+                    <padding>
+                        <Insets top="10" left="24" bottom="10"/>
+                    </padding>
+                    <Label text="test">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../img/play-list16.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Label>
+                    <Label text="ddh"></Label>
+                </VBox>
+            </TitledPane>
+        </HBox>
     </VBox>
 </ScrollPane>

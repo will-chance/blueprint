@@ -4,6 +4,7 @@ import cn.will.po.User;
 import cn.will.service.MusicService;
 import cn.will.util.FXMLLoaderHelper;
 import cn.will.vo.MusicResultVO;
+import fxml.Main;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -121,7 +122,7 @@ public class TitleBarController implements ViewController{
 
     @FXML
     private void login(){
-        if (currentUser == null) {
+        if (Main.getCurrentUser() == null) {
             //show login stage
             Stage loginStage = new Stage();
             loginStage.initStyle(StageStyle.UNIFIED);
@@ -150,7 +151,7 @@ public class TitleBarController implements ViewController{
 
     private ScrollPane loadSearchResultPane(List<MusicResultVO> musics){
         Parent pane = null;
-        FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/searchResult.fxml");
+        FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/search-result.fxml");
         pane = FXMLLoaderHelper.load(loader);
         SearchResultController controller = loader.getController();
         controller.setData(musics);

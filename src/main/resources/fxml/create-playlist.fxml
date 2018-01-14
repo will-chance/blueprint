@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cn.will.controller.UserLeftController"
+            stylesheets="@../css/user-left.css"
+            prefHeight="130.0" prefWidth="200.0">
+    <center>
+        <VBox>
+            <padding>
+                <Insets top="20" left="20" right="20"/>
+            </padding>
+            <TextField fx:id="playlistTitle"
+                       style="-fx-tooltip-visible: true"
+                       focusTraversable="false"
+                       promptText="playlist title"
+                       prefWidth="160"/>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox spacing="20">
+            <padding>
+                <Insets left="20" right="10" bottom="20"/>
+            </padding>
+            <Button text="OK" styleClass="ok-btn"
+                    minWidth="70" maxWidth="70" prefWidth="70"
+                    onAction="#createPlaylist"/>
+            <Button text="Cancel" styleClass="cancel-btn"
+                    minWidth="70" maxWidth="70" prefWidth="70"
+                    onAction="#closeCreatePlaylist"/>
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -42,4 +42,12 @@
         WHERE
             ufm.user_id = #{user.id}
     </select>
+
+    <insert id="insertPlaylist">
+        INSERT INTO t_play_list(title,creator_id) VALUES (#{title},#{user.id})
+    </insert>
+
+    <select id="listUserCreatePlaylist">
+
+    </select>
 </mapper>

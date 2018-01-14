@@ -2,13 +2,21 @@ package cn.will.controller;
 
 import cn.will.po.User;
 import cn.will.service.UserService;
+import cn.will.util.FXMLLoaderHelper;
 import cn.will.util.ViewHelper;
 import cn.will.vo.MusicResultVO;
 import fxml.Main;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -58,17 +66,17 @@ public class UserLeftController implements ViewController {
     }
 
     private void initShowFavoritePlayListMenu(){
-        favoritePlayListLabel.setOnMouseClicked(e->{
-            changeSelected(favoritePlayListLabel);
-            showFavoritePlayList();
-        });
+//        favoritePlayListLabel.setOnMouseClicked(e->{
+//            changeSelected(favoritePlayListLabel);
+//            showFavoritePlayList();
+//        });
     }
 
     private void initShowCreatePlayListMenu(){
-        createPlayListLabel.setOnMouseClicked(e->{
-            changeSelected(createPlayListLabel);
-            showCreatePlayList();
-        });
+//        createPlayListLabel.setOnMouseClicked(e->{
+//            changeSelected(createPlayListLabel);
+//            showCreatePlayList();
+//        });
     }
 
     private void changeSelected(Label label) {
@@ -79,7 +87,6 @@ public class UserLeftController implements ViewController {
         label.getStyleClass().add("label-selected");
     }
 
-    @FXML
     private void showPurchaseMusic(){
         User currentUser = Main.getCurrentUser();
         if (null == currentUser) return;
@@ -88,7 +95,6 @@ public class UserLeftController implements ViewController {
         rootPane.setCenter(ViewHelper.loadPlayListPane(musics));
     }
 
-    @FXML
     private void showFavoriteMusic(){
         User currentUser = Main.getCurrentUser();
         if (null == currentUser) return;
@@ -96,14 +102,47 @@ public class UserLeftController implements ViewController {
         rootPane.setCenter(ViewHelper.loadPlayListPane(musics));
     }
 
-    @FXML
     private void showCreatePlayList(){
+        //todo
+    }
 
+    private void showFavoritePlayList(){
+        //todo
+    }
+    private Stage createStage;
+
+    @FXML private TextField playlistTitle;
+
+    @FXML
+    private void showCreatePlaylistStage(){
+        Stage stage = new Stage(StageStyle.UNIFIED);
+        stage.setTitle("New Playlist");
+        stage.initOwner(rootPane.getScene().getWindow());
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image("img/music-icon16.png"));
+        Parent pane = FXMLLoaderHelper.load("fxml/create-playlist.fxml");
+        stage.setScene(new Scene(pane));
+        createStage = stage;
+        stage.show();
     }
 
     @FXML
-    private void showFavoritePlayList(){
+    private void createPlaylist(){
+        System.out.println("create list");
+        if (Main.getCurrentUser() == null) return;
+        String title = playlistTitle.getText();
+        if (userService.createPlaylist(title)) createStage.close();
+    }
 
+    @FXML
+    private void closeCreatePlaylist(){
+        if (null != createStage) createStage.close();
+    }
+
+    @FXML private TitledPane favoritePlaylistPane;
+
+    private void in(){
     }
 
     @Override

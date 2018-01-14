@@ -136,7 +136,7 @@ public class Main {
             //加载主页面框架
             BorderPane root = null;
             try {
-                root = (BorderPane) loadPaneWithoutSpring("fxml/player.fxml");
+                root = (BorderPane) loadPaneWithoutSpring("fxml/main.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -148,7 +148,7 @@ public class Main {
             this.rootPane = (BorderPane) BootFX.getContext().getBean("rootPane");
 
             //加载标题栏
-            Parent titleBar = loadPaneWithSpring("fxml/titleBar.fxml", primaryStage,rootPane);
+            Parent titleBar = loadPaneWithSpring("fxml/title-bar.fxml", primaryStage,rootPane);
             //设置标题栏
             rootPane.setTop(titleBar);
 

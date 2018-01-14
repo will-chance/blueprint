@@ -5,6 +5,7 @@
 }
 
 .label-menu{
+    -fx-min-width: 150;
     -fx-font-size: 15;
     -fx-text-fill: #1296db;
 }
@@ -13,4 +14,45 @@
     -fx-border-color: #1296db;
     -fx-border-style: solid;
     -fx-border-width: 0 0 0 2;
+}
+.create-btn{
+    -fx-background-color: transparent;
+    -fx-graphic: url("../img/create-normal16.png");
+}
+.create-btn:hover{
+    -fx-cursor: HAND;
+    -fx-background-color: transparent;
+    -fx-graphic: url("../img/create-active16.png");
+}
+.ok-btn{
+    -fx-background-color:#1296db;
+    -fx-text-fill: white;
+}
+.cancel-btn{
+    -fx-background-color:white;
+    -fx-text-fill: black;
+}
+.cancel-btn:hover,
+.ok-btn:hover{
+    -fx-cursor: HAND;
+}
+
+.titled-pane > .title{
+    -fx-font-size: 15px;
+    -fx-background-color: transparent;
+}
+.titled-pane > .title > .text {
+    -fx-fill: #1296db;
+}
+/**去边框**/
+.titled-pane > *.content {
+    -fx-border-color: transparent;
+}
+/*箭头*/
+.titled-pane > .title > .arrow-button .arrow {
+    -fx-background-insets: 0 0 0 0, 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-color: #1296db;
+    -fx-shape: "M472.064 751.552 72.832 352.32c-22.08-22.08-22.08-57.792 0-79.872 22.016-22.016 57.792-22.08 79.872 0L512 631.744l359.296-359.296c22.016-22.016 57.792-22.08 79.872 0 22.08 22.08 22.016 57.792 0 79.872l-399.232 399.232C529.856 773.568 494.144 773.568 472.064 751.552z";
 }

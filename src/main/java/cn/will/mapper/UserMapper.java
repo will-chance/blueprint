@@ -27,4 +27,6 @@ public interface UserMapper {
     List<MusicResultVO> listFavoriteMusicByUser(@Param("user") User user);
 
     List<MusicResultVO> listPurchaseMusicByUser(@Param("user") User user);
+
+    int insertPlaylist(@Param("title") String title,@Param("user") User user);
 }
