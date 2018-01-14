@@ -1,0 +1,61 @@
+.list-cell{
+    -fx-background-color: transparent;
+}
+
+.list-cell:selected {
+    -fx-text-fill: black;
+    -fx-background-color: transparent;
+}
+.list-cell:focused {
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.list-view{
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgb(210, 210, 210);
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-radius: 3em;
+}
+.scroll-bar{
+    -fx-pref-width: 7;
+}
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-max-width: 0;
+    -fx-max-height: 0;
+}
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow{
+    -fx-shape: " ";
+}
+.artist-album-cell{
+    -fx-max-height: 500;
+}
+.album-title{
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+}
+/*.album-music-cell{*/
+    /*-fx-text-fill: black;*/
+/*}*/
+.album-music-cell-id{
+    -fx-text-fill: black;
+    -fx-min-width: 20;
+    -fx-pref-width: 20;
+}
+.album-music-cell-title {
+    -fx-text-fill: black;
+    -fx-min-width: 340;
+    -fx-pref-width: 340;
+}
+.album-music-cell-duration{
+    -fx-text-fill: black;
+}

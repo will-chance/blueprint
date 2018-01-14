@@ -1,6 +1,8 @@
 package cn.will.mapper;
 
 import cn.will.po.Album;
+import cn.will.po.User;
+import cn.will.vo.AlbumVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,4 +18,6 @@ public interface AlbumMapper {
     int insertBatch(@Param("albums") List<Album> albums);
 
     Album selectByPrimaryKey(Integer id);
+
+    List<AlbumVO> listAlbumMusicByArtistId(int artistId,User user);
 }

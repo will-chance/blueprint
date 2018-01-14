@@ -12,6 +12,7 @@
     </left>
     <center>
         <fx:include source="albumDetail.fxml"/>
+        <!--<fx:include source="artist-music.fxml"/>-->
     </center>
     <bottom>
         <fx:include source="playBar.fxml"/>

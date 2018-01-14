@@ -1,8 +1,9 @@
 package cn.will.controller;
 
-import cn.will.po.Music;
 import cn.will.service.MusicService;
 import cn.will.view.MusicListCell;
+import cn.will.vo.MusicResultVO;
+import fxml.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -53,10 +54,11 @@ public class AlbumDetailController implements ViewController{
 
     private void initMusicList(){
         musicList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        List<Music> musics = musicService.listNewest();
+        List<MusicResultVO> musics = musicService.listNewest();
         ObservableList<MusicListCell> data = FXCollections.observableArrayList();
         for (int i = 0; i < musics.size(); i++) {
-            MusicListCell music =  new MusicListCell(musics.get(i),false);
+            MusicListCell music = Main.BootFX.getContext().getBean(MusicListCell.class,musics.get(i));
+//                    new MusicListCell(musics.get(i));
             data.add(music);
         }
         musicList.setItems(data);
@@ -64,8 +66,7 @@ public class AlbumDetailController implements ViewController{
 
     @FXML
     private void showMusicList(){
-        ObservableList<Music> musics = FXCollections.observableList(musicService.listNewest());
-        System.out.println(musics.size());
+        ObservableList<MusicResultVO> musics = FXCollections.observableList(musicService.listNewest());
         musicList.getItems().add(musics);
     }
 

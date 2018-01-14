@@ -18,6 +18,24 @@ public class User {
 
     private Double balance;
 
+    private String avatarPic;
+
+    public User() {
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getAvatarPic() {
+        return avatarPic;
+    }
+
+    public void setAvatarPic(String avatarPic) {
+        this.avatarPic = avatarPic;
+    }
+
     public int getId() {
         return id;
     }

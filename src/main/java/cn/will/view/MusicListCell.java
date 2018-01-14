@@ -1,11 +1,18 @@
 package cn.will.view;
 
-import cn.will.po.Music;
+import cn.will.service.UserService;
+import cn.will.util.TimeUtil;
+import cn.will.vo.MusicResultVO;
+import fxml.Main;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  * Created on 2018-01-13 7:42 AM
@@ -14,7 +21,12 @@ import javafx.scene.text.Text;
  * Project: blueprint
  * Desc:
  */
-public class MusicListCell {
+@Scope(value = "prototype")
+@Component
+public class MusicListCell{
+
+    @Autowired private UserService userService;
+
     private ImageView favoriteView = new ImageView(new Image("img/unfavorite16.png"));
 
     private ImageView unfavoriteView = new ImageView(new Image("img/favorite16.png"));
@@ -25,6 +37,8 @@ public class MusicListCell {
 
     private Text id;
 
+    private MusicResultVO music;
+
     private Text title;
 
     private Text artist;
@@ -34,21 +48,30 @@ public class MusicListCell {
     private Text duration;
 
     public MusicListCell() {
-
     }
 
-    public MusicListCell(Music music, boolean favorite) {
-        this.id = new Text(String.valueOf(music.getId()));
+    public MusicListCell(MusicResultVO music) {
+        this.music = music;
+        this.id = new Text(String.valueOf(music.getMusicId()));
         this.title = new Text(music.getTitle());
         this.artist = new Text(music.getArtist());
         this.album = new Text(music.getAlbum());
-        this.duration = new Text(String.valueOf(music.getDuration()));
-        this.favorite = favorite;
+        this.duration = new Text(TimeUtil.Secend2Minute(music.getDuration()));
+        this.favorite = music.isFavorite();
         initFavoriteIcon(favorite);
         setHoverCursor(artist);
         setHoverCursor(album);
         setHoverCursor(favoriteIcon);
         initFavoriteAction();
+        initToolTip(title);
+        initToolTip(artist);
+        initToolTip(album);
+    }
+
+    private void initToolTip(Text text){
+        if (null == text) return;
+        Tooltip tip = new Tooltip(text.getText());
+        Tooltip.install(text,tip);
     }
 
     private void initFavoriteIcon(boolean favorite){
@@ -59,7 +82,6 @@ public class MusicListCell {
             favoriteIcon.setGraphic(unfavoriteView);
         }
     }
-
 
     private void setHoverCursor(Text text){
         if (null == text) return;
@@ -91,6 +113,14 @@ public class MusicListCell {
 
     private void initFavoriteAction(){
         favoriteIcon.setOnMouseClicked(e -> {
+            if (Main.getCurrentUser() == null) {
+                return;
+            }
+            if (!favorite){
+                userService.favoriteMusic(music.getMusicId(), Main.getCurrentUser());
+            } else {
+                userService.cancelFavoriteMusic(music.getMusicId(),Main.getCurrentUser());
+            }
             setFavoriteIcon(favorite);
             favorite = !favorite;
         });

@@ -1,5 +1,6 @@
 package cn.will.util;
 
+import fxml.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -26,6 +27,7 @@ public class FXMLLoaderHelper {
         FXMLLoader loader = new FXMLLoader(Charset.forName("UTF-8"));
         try {
             loader.setLocation(new ClassPathResource(location).getURL());
+            loader.setControllerFactory(Main.BootFX.getContext()::getBean);
             parent = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,6 +40,7 @@ public class FXMLLoaderHelper {
         FXMLLoader loader = new FXMLLoader(Charset.forName("UTF-8"));
         try {
             loader.setLocation(new ClassPathResource(location).getURL());
+            loader.setControllerFactory(Main.BootFX.getContext()::getBean);
         } catch (IOException e) {
             e.printStackTrace();
         }

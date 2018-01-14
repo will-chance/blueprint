@@ -10,7 +10,7 @@
       fx:id="titleBar"
       fx:controller="cn.will.controller.TitleBarController"
       styleClass="root"
-      prefHeight="50.0" prefWidth="1000.0" stylesheets="@../css/title-bar.css">
+      prefHeight="48.0" prefWidth="1000.0" stylesheets="@../css/title-bar.css">
     <HBox fx:id="logo" spacing="5" prefWidth="250" minWidth="250" maxWidth="250">
         <HBox>
             <padding>
@@ -40,23 +40,25 @@
             </graphic>
         </Button>
     </HBox>
-    <HBox fx:id="userInfo" spacing="4" minWidth="300" prefWidth="268">
+    <HBox spacing="10" minWidth="300" prefWidth="268" onMouseClicked="#login">
         <padding>
-            <Insets top="15" right="5" bottom="10" left="5"/>
+            <Insets top="14" right="5" bottom="10" left="5"/>
         </padding>
-        <ImageView>
-            <Image url="@../img/user-white-32.png"/>
-        </ImageView>
-        <Text text="Will" style="-fx-font-size: 20;-fx-fill: white;"/>
+        <HBox fx:id="userInfo" spacing="10">
+                <ImageView fx:id="avatar" fitHeight="30" fitWidth="30" style="-fx-background-color: red">
+                    <Image url="@../img/login_user32.png"/>
+                    <!--<Image url="http://omzzrcx48.bkt.clouddn.com/will-avatar.jpg"/>-->
+                </ImageView>
+            <Text fx:id="usernameLabel" text="Login" style="-fx-font-size: 14;-fx-fill: #ffffff;"/>
+        </HBox>
     </HBox>
 
     <HBox spacing="4" >
         <padding>
             <Insets top="15" right="2" bottom="10" left="2"/>
         </padding>
-        <Separator orientation="VERTICAL" style="-fx-background-color: #7c807d;"
-                   valignment="CENTER"
-                   maxWidth="1" minWidth="1"/>
+        <Separator orientation="VERTICAL" style="-fx-background-color: #a4a8a5;"
+                   valignment="CENTER"/>
         <Button fx:id="minimumBtn" styleClass="control-btn">
             <graphic>
                 <ImageView>

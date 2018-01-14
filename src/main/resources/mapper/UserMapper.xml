@@ -4,4 +4,23 @@
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="User" useGeneratedKeys="true">
         INSERT INTO t_user(username, password) VALUES (#{username},#{password})
     </insert>
+
+    <select id="selectByUsernameAndPassword" parameterType="User" resultType="User">
+        SELECT
+          u.id,
+          u.username,
+          u.balance,
+          u.avatar_pic AS avatarPic
+        FROM
+        t_user u WHERE username=#{username} AND password = #{password}
+    </select>
+
+    <insert id="insertUserFavoriteMusic">
+        INSERT INTO t_user_favorite_music(music_id,user_id) VALUES
+        (#{musicId},#{user.id})
+    </insert>
+
+    <delete id="deleteUserFavoriteMusic">
+        DELETE FROM t_user_favorite_music WHERE music_id= #{musicId} AND user_id = #{user.id}
+    </delete>
 </mapper>

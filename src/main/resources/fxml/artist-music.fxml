@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cn.will.controller.ArtistMusicController"
+            stylesheets="@../css/artist-album.css"
+            maxHeight="Infinity"
+            prefWidth="780.0">
+    <VBox spacing="30">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        <HBox spacing="20">
+            <ImageView fitWidth="200" fitHeight="200">
+                <Image url="http://omzzrcx48.bkt.clouddn.com/will-avatar.jpg"/>
+            </ImageView>
+            <VBox spacing="10">
+                <HBox spacing="5">
+                    <Label text="Artist :"/>
+                    <Label fx:id="artist" text="Adele"/>
+                </HBox>
+                <HBox>
+                    <Label text="Musics : "/>
+                    <Label fx:id="musicsLabel" text="20"/>
+                </HBox>
+                <HBox>
+                    <Label text="Albums : "/>
+                    <Label fx:id="albumsLabel" text="5"/>
+                </HBox>
+            </VBox>
+        </HBox>
+        <Separator />
+
+        <ListView fx:id="artistAlbum" minWidth="725" maxWidth="725"
+                  styleClass="album-list"
+                  maxHeight="Infinity"
+                  mouseTransparent="false" focusTraversable="false"
+                style="-fx-background-insets: 0;-fx-padding: 0;-fx-background-color: transparent;">
+        </ListView>
+    </VBox>
+</ScrollPane>

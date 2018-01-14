@@ -1,6 +1,7 @@
 package fxml;
 
 import cn.will.controller.ViewController;
+import cn.will.po.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,12 +35,20 @@ import static java.util.Objects.isNull;
 @ComponentScan(basePackages = "cn.will.service")
 @ComponentScan(basePackages = "fxml")
 @ComponentScan(basePackages = "cn.will.controller")
+@ComponentScan(basePackages = "cn.will.view")
 @SpringBootApplication
 public class Main {
 
     private static String APP_TITLE = "Blueprint";
 
-    private static BorderPane root;
+    private static User currentUser;
+
+    public static User getCurrentUser(){
+        return currentUser;
+    }
+    public static void setCurrentUser(User user){
+        currentUser = user;
+    }
 
     public static void main(String[] args) {
         Application.launch(BootFX.class,args);
@@ -64,7 +73,13 @@ public class Main {
 
         private static BootFX instance;
 
-        private ConfigurableApplicationContext applicationContext;
+        private BorderPane root;
+
+        public static ConfigurableApplicationContext getContext(){
+            return applicationContext;
+        }
+
+        private static ConfigurableApplicationContext applicationContext;
 
         public BootFX() {
             BootFX.instance = this;
@@ -104,10 +119,16 @@ public class Main {
                     .run(args);
         }
 
+        @Bean
+        public BorderPane getRootPane(){
+            return root;
+        }
+
         @Override
         public void start(Stage primaryStage) throws Exception {
             //加载主页面框架
             BorderPane root = (BorderPane) loadPane("fxml/player.fxml",primaryStage);
+            this.root = root;
             //加载标题栏
             Parent titleBar = loadPane("fxml/titleBar.fxml", primaryStage,root);
             //设置标题栏

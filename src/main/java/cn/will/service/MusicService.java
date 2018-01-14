@@ -2,6 +2,8 @@ package cn.will.service;
 
 import cn.will.mapper.MusicMapper;
 import cn.will.po.Music;
+import cn.will.vo.MusicResultVO;
+import fxml.Main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,11 +36,11 @@ public class MusicService {
      * @param keyword
      * @return
      */
-    public List<Music> searchMusics(String keyword){
-        return musicMapper.searchMusicByTitle(keyword);
+    public List<MusicResultVO> searchMusics(String keyword){
+        return musicMapper.searchMusicByTitle(keyword, Main.getCurrentUser());
     }
 
-    public List<Music> listNewest(){
+    public List<MusicResultVO> listNewest(){
         return musicMapper.listNewestMusic();
     }
 }

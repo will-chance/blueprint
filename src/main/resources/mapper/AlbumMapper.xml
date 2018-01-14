@@ -15,4 +15,53 @@
         FROM t_album a
         WHERE a.id = #{id}
     </select>
+
+    <select id="listAlbumMusicByArtistId" resultMap="AlbumMusicResultMap">
+        SELECT
+          a.*
+          <if test="user != null">
+              , ufm.favorite
+          </if>
+        FROM
+        (
+            SELECT
+                m.id AS music_id,
+                m.title,
+                m.duration,
+                am.album_id,
+                ab.title AS album_name,
+                ab.cover_img
+            FROM
+                t_music m,
+                t_artist a,
+                t_album_music am,
+                t_album ab
+            WHERE
+                m.artist_id = a.id
+            AND am.music_id = m.id
+            AND ab.id = am.album_id
+            AND a.id = #{artistId}
+        ) a
+        <if test="user != null">
+        LEFT OUTER JOIN (
+          SELECT
+            1 AS favorite,
+            music_id,
+            user_id
+          FROM
+            t_user_favorite_music
+        ) ufm ON ufm.music_id = a.music_id
+        AND ufm.user_id = #{user.id};
+        </if>
+    </select>
+    <resultMap id="AlbumMusicResultMap" type="cn.will.vo.AlbumVO">
+        <result column="album_title" property="title"/>
+        <result column="cover_img" property="coverPic"/>
+        <collection property="musics" column="album_id" ofType="cn.will.vo.AlbumMusicVO">
+            <id column="music_id" property="id"/>
+            <result column="favorite" property="favorite"/>
+            <result column="music_title" property="title"/>
+            <result column="duration" property="duration"/>
+        </collection>
+    </resultMap>
 </mapper>

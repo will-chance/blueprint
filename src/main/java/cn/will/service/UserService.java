@@ -1,6 +1,8 @@
 package cn.will.service;
 
+import cn.will.mapper.UserMapper;
 import cn.will.po.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +15,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    public boolean login(User user){
+    @Autowired
+    private UserMapper userMapper;
+
+    public User login(User user){
+        return userMapper.selectByUsernameAndPassword(user);
+    }
+
+    public boolean favoriteMusic(int musicId,User user){
+        if (userMapper.insertUserFavoriteMusic(musicId,user) <= 0) return false;
+        return true;
+    }
+
+    public boolean cancelFavoriteMusic(int musicId,User user){
+        if (userMapper.deleteUserFavoriteMusic(musicId,user) <=0) return false;
         return true;
     }
 }

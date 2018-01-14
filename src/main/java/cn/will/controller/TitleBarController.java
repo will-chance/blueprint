@@ -1,19 +1,27 @@
 package cn.will.controller;
 
-import cn.will.po.Music;
+import cn.will.po.User;
 import cn.will.service.MusicService;
 import cn.will.util.FXMLLoaderHelper;
+import cn.will.vo.MusicResultVO;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -48,11 +56,20 @@ public class TitleBarController implements ViewController{
         initCloseBtn();
         initMinimumBtn();
         initSearchBtn();
+        setCursorChangeOnHover(userInfo);
+        initAvatarViewPosition();
+    }
+
+    private void initAvatarViewPosition(){
+        double x = avatar.getX();
+        double y = avatar.getY();
+        Circle circle = new Circle(x+15,y+15,15);
+        avatar.setClip(circle);
     }
 
     private void initCloseBtn(){
         closeBtn.setOnAction( e->Platform.exit());
-        setOnMouseHoverAction(closeBtn);
+        setCursorChangeOnHover(closeBtn);
     }
 
     private void initMinimumBtn(){
@@ -60,24 +77,16 @@ public class TitleBarController implements ViewController{
             Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
             stage.setIconified(true);
         });
-        setOnMouseHoverAction(minimumBtn);
+        setCursorChangeOnHover(minimumBtn);
     }
 
     private void initSearchBtn(){
-        setOnMouseHoverAction(searchBtn);
+        setCursorChangeOnHover(searchBtn);
     }
 
-    private void setOnMouseHoverAction(Button button){
+    private void setCursorChangeOnHover(Button button){
         button.setOnMouseEntered(e -> button.getScene().setCursor(Cursor.HAND));
         button.setOnMouseExited(e->button.getScene().setCursor(Cursor.DEFAULT));
-    }
-
-    @FXML
-    public void search(){
-        String keyword = "%"+searchContent.getText()+"%";
-        if (null == keyword || "".equals(keyword)) return;
-        List<Music> musics = musicService.searchMusics(keyword);
-        root.setCenter(loadSearchResultPane(musics));
     }
 
     /**
@@ -101,24 +110,70 @@ public class TitleBarController implements ViewController{
         double y;
     }
 
-    @Override
-    public void initPrimaryStage(Stage primaryStage) {
-        initTitleBarAction(primaryStage);
+    /***user***/
+    private User currentUser;
+
+    @FXML private HBox userInfo;
+
+    @FXML private ImageView avatar;
+
+    @FXML private Text usernameLabel;
+
+    @FXML
+    private void login(){
+        if (currentUser == null) {
+            //show login stage
+            Stage loginStage = new Stage();
+            loginStage.initStyle(StageStyle.UNIFIED);
+            loginStage.initOwner(root.getScene().getWindow());
+            loginStage.initModality(Modality.APPLICATION_MODAL);
+            loginStage.setResizable(false);
+            FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/login.fxml");
+            Parent root = FXMLLoaderHelper.load(loader);
+            UserController controller = loader.getController();
+            controller.setAvatar(avatar);
+            controller.setUsernameLabel(usernameLabel);
+            loginStage.getIcons().add(new Image("img/user32.png"));
+            loginStage.setScene(new Scene(root));
+            loginStage.show();
+        }
     }
 
-
-    @Override
-    public void setBorderPane(BorderPane pane) {
-        this.root = pane;
+    @FXML
+    public void search(){
+        String keyword = searchContent.getText();
+        if (null == keyword || "".equals(keyword)) return;
+        keyword = "%" + keyword + "%";
+        List<MusicResultVO> musics = musicService.searchMusics(keyword);
+        root.setCenter(loadSearchResultPane(musics));
     }
 
-    private ScrollPane loadSearchResultPane(List<Music> musics){
+    private ScrollPane loadSearchResultPane(List<MusicResultVO> musics){
         Parent pane = null;
         FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/searchResult.fxml");
         pane = FXMLLoaderHelper.load(loader);
         SearchResultController controller = loader.getController();
         controller.showResult(musics);
         return (ScrollPane) pane;
+    }
+
+    private void setCursorChangeOnHover(HBox hBox){
+        hBox.setOnMouseEntered(e->{
+            hBox.getScene().setCursor(Cursor.HAND);
+        });
+        hBox.setOnMouseExited(e->{
+            hBox.getScene().setCursor(Cursor.DEFAULT);
+        });
+    }
+
+    @Override
+    public void initPrimaryStage(Stage primaryStage) {
+        initTitleBarAction(primaryStage);
+    }
+
+    @Override
+    public void setBorderPane(BorderPane pane) {
+        this.root = pane;
     }
 
 }

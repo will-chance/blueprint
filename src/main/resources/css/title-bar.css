@@ -19,9 +19,9 @@
 }
 .separator *.line {
     -fx-border-style: solid;
-    -fx-border-width: 0 2 0 0; /* its make really one-pixel-border */
-    -fx-border-color: grey;
-    -fx-background-color: grey;
+    -fx-border-width: 0 1 0 0; /* its make really one-pixel-border */
+    -fx-border-color: #bbbbbb;
+    -fx-background-color: #bbbbbb;
 }
 
 

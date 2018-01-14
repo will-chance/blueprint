@@ -2,29 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.will.mapper.MusicMapper">
 
-    <select id="listNewestMusic" resultType="Music">
+    <select id="listNewestMusic" resultType="MusicResultVO">
         SELECT
+          m.id AS musicId,
           m.title,
           a.artist_name AS artist,
           ab.title AS album,
           m.duration
         FROM t_music m,t_artist a,t_album_music am,t_album ab
         WHERE m.artist_id = a.id AND am.music_id = m.id AND ab.id = am.album_id
-        ORDER BY m.gmt_create DESC;
+        ORDER BY m.play_times DESC LIMIT 20
     </select>
 
-    <select id="searchMusicByTitle" parameterType="String" resultType="Music">
+    <select id="searchMusicByTitle" resultType="MusicResultVO">
         SELECT
-          m.title,
-          a.artist_name AS artist,
-          ab.title AS album,
-          m.duration
-        FROM t_music m
-        LEFT JOIN t_artist a ON a.id = m.artist_id
-        LEFT JOIN t_album_music am ON am.music_id = m.id
-        LEFT JOIN t_album ab ON ab.id = am.album_id
-        WHERE m.title LIKE #{keyword}
-        ORDER BY m.publish_time DESC LIMIT 20
+            a.*
+        <if test="user != null">
+            , ufm.favorite
+        </if>
+        FROM
+            (
+                SELECT
+                    m.id AS musicId,
+                    m.title,
+                    a.artist_name AS artist,
+                    ab.title AS album,
+                    m.duration
+                FROM
+                    t_music m
+                LEFT JOIN t_artist a ON a.id = m.artist_id
+                LEFT JOIN t_album_music am ON am.music_id = m.id
+                LEFT JOIN t_album ab ON ab.id = am.album_id
+                WHERE
+                    m.title LIKE #{keyword}
+                LIMIT 20
+            ) a
+            <if test="user != null">
+        LEFT OUTER JOIN (
+            SELECT
+                1 AS favorite,
+                music_id,
+                user_id
+            FROM
+                t_user_favorite_music
+        ) ufm ON ufm.music_id = a.musicId
+        AND ufm.user_id = #{user.id}
+            </if>
     </select>
 
     <insert id="insertBatch">
