@@ -49,7 +49,6 @@ public class AlbumDetailController implements ViewController{
     @FXML
     private void initialize(){
         showRecommend();
-        initMusicList();
     }
 
     private void initMusicList(){
@@ -70,6 +69,26 @@ public class AlbumDetailController implements ViewController{
         playTimes.setText("0");
         creatorLabel.setText("WILL");
         createLabel.setText(new Date(System.currentTimeMillis()).toString());
+    }
+
+    public void setPreviewData(){
+
+    }
+
+    public void setData(List<MusicResultVO> musics){
+        if (null == musics || musics.isEmpty()) return;
+
+        containNum.setText(String.valueOf(musics.size()));
+        albumName.setText(musics.get(0).getAlbum());
+
+        ObservableList<MusicListCell> data = FXCollections.observableArrayList();
+        for (int i = 0; i < musics.size(); i++) {
+            MusicResultVO music = musics.get(i);
+            music.setMusicId(i+1);
+            MusicListCell cell = Main.BootFX.getContext().getBean(MusicListCell.class,music);
+            data.add(cell);
+        }
+        musicList.setItems(data);
     }
 
     @Override

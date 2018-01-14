@@ -4,6 +4,7 @@ import cn.will.mapper.AlbumMapper;
 import cn.will.po.Album;
 import cn.will.po.Music;
 import cn.will.vo.AlbumVO;
+import cn.will.vo.MusicResultVO;
 import fxml.Main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,9 @@ public class AlbumService {
 
     public List<AlbumVO> listArtistMusic(int artistId){
         return albumMapper.listAlbumMusicByArtistId(artistId, Main.getCurrentUser());
+    }
+
+    public List<MusicResultVO> listAlbumMusic(int albumId){
+        return albumMapper.listAlbumMusicByAlbumId(albumId,Main.getCurrentUser());
     }
 }

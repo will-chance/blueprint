@@ -1,5 +1,6 @@
 package cn.will.view;
 
+import cn.will.controller.AlbumDetailController;
 import cn.will.controller.ArtistMusicController;
 import cn.will.service.AlbumService;
 import cn.will.service.UserService;
@@ -65,8 +66,16 @@ public class MusicListCell{
     }
 
     public MusicListCell(MusicResultVO music) {
+        if (null == music) return;
+        int musicId = music.getMusicId();
+        if (musicId <10){
+            this.id = new Text("0"+musicId);
+        } else {
+            this.id = new Text(String.valueOf(musicId));
+        }
+
+
         this.music = music;
-        this.id = new Text(String.valueOf(music.getMusicId()));
         this.title = new Text(music.getTitle());
         this.artist = new Text(music.getArtist());
         this.album = new Text(music.getAlbum());
@@ -81,6 +90,7 @@ public class MusicListCell{
         initToolTip(artist);
         initToolTip(album);
         initShowArtistMusicAction();
+        initShowAlbumMusicAction();
     }
 
     private void initToolTip(Text text){
@@ -150,7 +160,6 @@ public class MusicListCell{
      */
     private void initShowArtistMusicAction(){
         artist.setOnMouseClicked(e->{
-            System.out.println("mouse click");
             List<AlbumVO> albums = albumService.listArtistMusic(music.getArtistId());
             rootPane.setCenter(loadArtistDetailPane(albums));
         });
@@ -161,6 +170,24 @@ public class MusicListCell{
         Parent pane = FXMLLoaderHelper.load(loader);
         ArtistMusicController controller = loader.getController();
         controller.setData(data);
+        return (ScrollPane) pane;
+    }
+
+    /**
+     * 处理点击专辑动作 --> 打开专辑详情
+     */
+    private void initShowAlbumMusicAction(){
+        album.setOnMouseClicked(e->{
+            List<MusicResultVO> musics = albumService.listAlbumMusic(music.getAlbumId());
+            rootPane.setCenter(loadAlbumMusicListPane(musics));
+        });
+    }
+
+    private ScrollPane loadAlbumMusicListPane(List<MusicResultVO> musics){
+        FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/album-detail.fxml");
+        Parent pane = FXMLLoaderHelper.load(loader);
+        AlbumDetailController controller = loader.getController();
+        controller.setData(musics);
         return (ScrollPane) pane;
     }
 

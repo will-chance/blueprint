@@ -31,3 +31,14 @@ javafx:
     title: Blueprint
     stage:
       style: undecorated
+logging:
+  level:
+    com.ibatis: ERROR
+    com.ibatis.common.jdbc.SimpleDataSource: DEBUG
+    com.ibatis.common.jdbc.ScriptRunner: DEBUG
+    com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate: DEBUG
+    java.sql: DEBUG
+    java.sql.Connection: DEBUG
+    java.sql.Statement: DEBUG
+    java.sql.PreparedStatement: DEBUG
+    java.sql.ResultSet: DEBUG
