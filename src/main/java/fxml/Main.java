@@ -96,14 +96,14 @@ public class Main {
          * @return
          * @throws IOException
          */
-        private Parent loadPane(String location) throws IOException {
+        private Parent loadPaneWithoutSpring(String location) throws IOException {
             FXMLLoader loader = new FXMLLoader(Charset.forName("UTF-8"));
             loader.setLocation(new ClassPathResource(location).getURL());
             Parent root = loader.load();
             return root;
         }
 
-        private Parent loadPane(String location,Stage primaryStage,BorderPane borderPane) throws IOException {
+        private Parent loadPaneWithSpring(String location, Stage primaryStage, BorderPane borderPane) throws IOException {
             Parent parent;
             FXMLLoader loader = createLoader(location);
             parent = loader.load();
@@ -136,7 +136,7 @@ public class Main {
             //加载主页面框架
             BorderPane root = null;
             try {
-                root = (BorderPane) loadPane("fxml/player.fxml");
+                root = (BorderPane) loadPaneWithoutSpring("fxml/player.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -148,13 +148,17 @@ public class Main {
             this.rootPane = (BorderPane) BootFX.getContext().getBean("rootPane");
 
             //加载标题栏
-            Parent titleBar = loadPane("fxml/titleBar.fxml", primaryStage,rootPane);
+            Parent titleBar = loadPaneWithSpring("fxml/titleBar.fxml", primaryStage,rootPane);
             //设置标题栏
             rootPane.setTop(titleBar);
 
             //加载中间面板
-            Parent center = loadPane("fxml/album-detail.fxml",primaryStage,rootPane);
+            Parent center = loadPaneWithSpring("fxml/album-detail.fxml",primaryStage,rootPane);
             rootPane.setCenter(center);
+
+            //加载左侧面板
+            Parent left = loadPaneWithSpring("fxml/user-left.fxml",primaryStage,rootPane);
+            rootPane.setLeft(left);
 
             primaryStage.setTitle(APP_TITLE);
             primaryStage.initStyle(StageStyle.TRANSPARENT);

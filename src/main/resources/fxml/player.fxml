@@ -5,15 +5,6 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cn.will.controller.PlayerController"
             prefHeight="670.0" prefWidth="1020.0" stylesheets="@../css/player.css">
-    <top>
-    </top>
-    <left>
-        <fx:include source="userLeft.fxml"/>
-    </left>
-    <center>
-        <!--<fx:include source="albumDetail.fxml"/>-->
-        <!--<fx:include source="artist-music.fxml"/>-->
-    </center>
     <bottom>
         <fx:include source="playBar.fxml"/>
     </bottom>

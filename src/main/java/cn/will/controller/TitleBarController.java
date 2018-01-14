@@ -153,7 +153,7 @@ public class TitleBarController implements ViewController{
         FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/searchResult.fxml");
         pane = FXMLLoaderHelper.load(loader);
         SearchResultController controller = loader.getController();
-        controller.showResult(musics);
+        controller.setData(musics);
         return (ScrollPane) pane;
     }
 

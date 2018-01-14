@@ -1,11 +1,11 @@
 package cn.will.view;
 
-import cn.will.controller.AlbumDetailController;
 import cn.will.controller.ArtistMusicController;
 import cn.will.service.AlbumService;
 import cn.will.service.UserService;
 import cn.will.util.FXMLLoaderHelper;
-import cn.will.util.TimeUtil;
+import cn.will.util.TimeHelper;
+import cn.will.util.ViewHelper;
 import cn.will.vo.AlbumVO;
 import cn.will.vo.MusicResultVO;
 import fxml.Main;
@@ -79,7 +79,7 @@ public class MusicListCell{
         this.title = new Text(music.getTitle());
         this.artist = new Text(music.getArtist());
         this.album = new Text(music.getAlbum());
-        this.duration = new Text(TimeUtil.Secend2Minute(music.getDuration()));
+        this.duration = new Text(TimeHelper.Secend2Minute(music.getDuration()));
         this.favorite = music.isFavorite();
         initFavoriteIcon(favorite);
         setHoverCursor(artist);
@@ -179,16 +179,8 @@ public class MusicListCell{
     private void initShowAlbumMusicAction(){
         album.setOnMouseClicked(e->{
             List<MusicResultVO> musics = albumService.listAlbumMusic(music.getAlbumId());
-            rootPane.setCenter(loadAlbumMusicListPane(musics));
+            rootPane.setCenter(ViewHelper.loadPlayListPane(musics));
         });
-    }
-
-    private ScrollPane loadAlbumMusicListPane(List<MusicResultVO> musics){
-        FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/album-detail.fxml");
-        Parent pane = FXMLLoaderHelper.load(loader);
-        AlbumDetailController controller = loader.getController();
-        controller.setData(musics);
-        return (ScrollPane) pane;
     }
 
     /********Setter/Getter todo replace with lomock***********/

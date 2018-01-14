@@ -18,7 +18,7 @@
                 <Insets top="5" bottom="5" left="20"/>
             </VBox.margin>
             <HBox spacing="4">
-                <Label fx:id="purchaseMusicLabel" text="Purchased" styleClass="label-show">
+                <Label fx:id="purchaseMusicLabel" text="Purchased" styleClass="label-menu">
                     <graphic>
                         <ImageView>
                             <Image url="@../img/purchase16.png"/>
@@ -27,7 +27,7 @@
                 </Label>
             </HBox>
             <HBox spacing="4">
-                <Label fx:id="favoriteMusicLabel" text="Favorite" styleClass="label-show">
+                <Label fx:id="favoriteMusicLabel" text="Favorite" styleClass="label-menu">
                     <graphic>
                         <ImageView>
                             <Image url="@../img/favorite16.png"/>
@@ -42,7 +42,7 @@
                 <Insets top="5" bottom="5" left="20"/>
             </VBox.margin>
             <HBox spacing="4">
-                <Label fx:id="createPlayListLabel" text="Create" styleClass="label-show">
+                <Label fx:id="createPlayListLabel" text="Create" styleClass="label-menu">
                     <graphic>
                         <ImageView>
                             <Image url="@../img/play-list16.png"/>
@@ -51,7 +51,7 @@
                 </Label>
             </HBox>
             <HBox spacing="4">
-                <Label fx:id="favoritePlayListLabel" text="Favorite" styleClass="label-show">
+                <Label fx:id="favoritePlayListLabel" text="Favorite" styleClass="label-menu">
                     <graphic>
                         <ImageView>
                             <Image url="@../img/favorite16.png"/>

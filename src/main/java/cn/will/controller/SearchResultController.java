@@ -38,15 +38,16 @@ public class SearchResultController implements ViewController{
         musics = FXCollections.observableArrayList();
     }
 
-    public void showResult(List<MusicResultVO> musics){
+    public void setData(List<MusicResultVO> musics){
         if (null == musics || musics.isEmpty()) {
             resultPreview.setText("Not Relative Result");
             return;
         }
         this.musics.clear();
         for (int i = 0; i < musics.size(); i++) {
-            MusicListCell music =  Main.BootFX.getContext().getBean(MusicListCell.class,musics.get(i));
-            this.musics.add(music);
+            MusicResultVO music = musics.get(i);
+            MusicListCell data =  Main.BootFX.getContext().getBean(MusicListCell.class, music);
+            this.musics.add(data);
         }
         result.setItems(this.musics);
     }

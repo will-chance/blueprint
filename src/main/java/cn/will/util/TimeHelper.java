@@ -7,7 +7,7 @@ package cn.will.util;
  * Project: blueprint
  * Desc:
  */
-public class TimeUtil {
+public class TimeHelper {
 
     static int TIME_UINT = 60;
 

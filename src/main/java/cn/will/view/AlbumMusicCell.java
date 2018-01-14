@@ -1,6 +1,6 @@
 package cn.will.view;
 
-import cn.will.util.TimeUtil;
+import cn.will.util.TimeHelper;
 import cn.will.vo.AlbumMusicVO;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -39,7 +39,7 @@ public class AlbumMusicCell extends HBox{
         }
 
         this.title = new Label(music.getTitle());
-        this.duration = new Label(TimeUtil.Secend2Minute(music.getDuration()));
+        this.duration = new Label(TimeHelper.Secend2Minute(music.getDuration()));
         this.favorite = music.isFavorite();
         initFavoriteIcon(favorite);
         setHoverCursor(favoriteIcon);

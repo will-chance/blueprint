@@ -23,4 +23,23 @@
     <delete id="deleteUserFavoriteMusic">
         DELETE FROM t_user_favorite_music WHERE music_id= #{musicId} AND user_id = #{user.id}
     </delete>
+
+    <select id="listFavoriteMusicByUser" resultType="MusicResultVO">
+        SELECT
+            1 AS favorite,
+            ufm.music_id AS musicId,
+            m.title AS title,
+            m.duration,
+            am.album_id AS albumId,
+            ab.title AS album,
+            a.artist_name AS artist
+        FROM
+            t_user_favorite_music ufm
+        LEFT JOIN t_music m ON m.id = ufm.music_id
+        LEFT JOIN t_artist a ON a.id = m.artist_id
+        LEFT JOIN t_album_music am ON ufm.music_id = am.music_id
+        LEFT JOIN t_album ab ON ab.id = am.album_id
+        WHERE
+            ufm.user_id = #{user.id}
+    </select>
 </mapper>
