@@ -58,8 +58,12 @@
     -fx-background-insets: 0, 0, 0;
     -fx-background-radius: 3em;
 }
-.scroll-bar{
+.scroll-bar:vertical{
     -fx-pref-width: 7;
+}
+.scroll-bar:horizontal{
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
 }
 .scroll-bar:horizontal{
     -fx-pref-width: 0;
@@ -81,4 +85,19 @@
 .scroll-bar:vertical .increment-arrow,
 .scroll-bar:vertical .decrement-arrow{
     -fx-shape: " ";
+}
+.scroll-pane:focused{
+    -fx-focus-color:-fx-outer-border;
+    -fx-background-insets: 0, 0, 1, 0;
+}
+.act-btn:hover{
+    -fx-cursor: HAND;
+}
+
+.playlist{
+    -fx-font-size: 15px;
+    -fx-text-fill: #1296db;
+}
+.playlist:hover{
+    -fx-cursor: HAND;
 }

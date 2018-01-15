@@ -69,4 +69,9 @@
             (#{item.albumId},#{item.musicId})
         </foreach>
     </insert>
+
+    <insert id="insertPlaylistMusic">
+        INSERT INTO t_play_list_music(music_id,play_list_id) VALUES
+        (#{musicId},#{playlistId})
+    </insert>
 </mapper>

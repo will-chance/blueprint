@@ -36,6 +36,10 @@
 .scroll-bar:vertical .decrement-arrow{
     -fx-shape: " ";
 }
+.scroll-pane:focused{
+    -fx-focus-color:-fx-outer-border;
+    -fx-background-insets: 0, 0, 1, 0;
+}
 .artist-album-cell{
     -fx-max-height: 500;
 }
@@ -43,9 +47,6 @@
     -fx-font-weight: bold;
     -fx-font-size: 15;
 }
-/*.album-music-cell{*/
-    /*-fx-text-fill: black;*/
-/*}*/
 .album-music-cell-id{
     -fx-text-fill: black;
     -fx-min-width: 20;

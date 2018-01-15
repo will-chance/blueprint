@@ -4,7 +4,13 @@ import cn.will.controller.AlbumDetailController;
 import cn.will.vo.MusicResultVO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 import java.util.List;
 
@@ -23,5 +29,17 @@ public class ViewHelper {
         AlbumDetailController controller = loader.getController();
         controller.setData(data);
         return (ScrollPane) pane;
+    }
+
+    public static void showNewStage(String title,Parent root,Window owner){
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(owner);
+        stage.getIcons().add(new Image("img/music-icon16.png"));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNIFIED);
+        stage.setTitle(title);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

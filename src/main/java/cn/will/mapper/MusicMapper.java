@@ -24,4 +24,6 @@ public interface MusicMapper {
 
     List<MusicResultVO> searchMusicByTitle(@Param("keyword") String keyword,
                                            @Param("user")User user);
+
+    int insertPlaylistMusic(@Param("musicId")int musicId,@Param("playlistId")int playlistId);
 }

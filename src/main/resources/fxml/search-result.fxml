@@ -16,18 +16,21 @@
                 <HBox alignment="CENTER">
                     <Label fx:id="resultPreview" text="No Result"></Label>
                 </HBox>
-                <TableView fx:id="result"
-                           maxHeight="Infinity" minHeight="100"
-                           styleClass="table-header">
+                <TableView fx:id="result" prefWidth="745" styleClass="table-header">
                     <columns>
                         <TableColumn text="No" minWidth="30" maxWidth="30" prefWidth="30">
                             <cellValueFactory>
                                 <PropertyValueFactory property="id"/>
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="actionColumn" text="Act" minWidth="35" maxWidth="35" prefWidth="35">
+                        <TableColumn fx:id="actionColumn" minWidth="20" maxWidth="20" prefWidth="20">
                             <cellValueFactory>
                                 <PropertyValueFactory property="favoriteIcon"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="" minWidth="20" maxWidth="20" prefWidth="20">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="add2PlaylistView"/>
                             </cellValueFactory>
                         </TableColumn>
                         <TableColumn text="Title" minWidth="200" maxWidth="200" prefWidth="200">
@@ -45,7 +48,7 @@
                                 <PropertyValueFactory property="album"/>
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn text="Duration" minWidth="100" maxWidth="100" prefWidth="100">
+                        <TableColumn text="Duration" minWidth="105" maxWidth="105" prefWidth="105">
                             <cellValueFactory>
                                 <PropertyValueFactory property="duration"/>
                             </cellValueFactory>

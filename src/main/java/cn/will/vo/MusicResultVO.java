@@ -9,6 +9,8 @@ package cn.will.vo;
  */
 public class MusicResultVO {
 
+    private int id;
+
     private int musicId;
 
     private String title;
@@ -87,5 +89,13 @@ public class MusicResultVO {
 
     public void setAlbumId(int albumId) {
         this.albumId = albumId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

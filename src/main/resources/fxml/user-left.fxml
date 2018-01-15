@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cn.will.controller.UserLeftController"
             stylesheets="@../css/user-left.css"
             prefHeight="570.0" prefWidth="220.0" minWidth="220" maxWidth="220">
+    <stylesheets>
+        <URL value="@../css/list.css"/>
+    </stylesheets>
     <VBox>
         <padding>
-            <Insets top="5" right="0" bottom="5" left="10"/>
+            <Insets top="5" right="0" bottom="0" left="10"/>
         </padding>
         <Label text="Music" style="-fx-text-fill: #1296db;-fx-font-size: 20"/>
         <VBox spacing="10">
@@ -39,42 +43,41 @@
         </VBox>
         <Label text="Play List" style="-fx-text-fill: #1296db;-fx-font-size: 20"/>
         <HBox>
-            <TitledPane text="Create" expanded="false" prefWidth="174" minWidth="174" maxWidth="174">
+            <TitledPane text="Created"
+                        expanded="false" prefWidth="182" minWidth="182" maxWidth="182">
                 <graphic>
                     <ImageView>
                         <Image url="@../img/play-list16.png"/>
                     </ImageView>
                 </graphic>
-                <VBox fx:id="createdList"></VBox>
+                <VBox fx:id="createdPlaylist" spacing="5">
+                    <padding>
+                        <Insets top="10" left="30" bottom="10"/>
+                    </padding>
+                </VBox>
             </TitledPane>
             <HBox>
                 <padding>
                     <Insets top="3"/>
                 </padding>
-                <Button styleClass="create-btn" onAction="#showCreatePlaylistStage"/>
+                <Button styleClass="create-btn"
+                        minWidth="16" prefWidth="16"
+                        onAction="#showCreatePlaylistStage"/>
             </HBox>
         </HBox>
         <HBox>
-            <TitledPane fx:id="favoritePlaylistPane" text="Favorite"
-                        prefWidth="174" minWidth="174" maxWidth="174"
-                        expanded="true">
+            <TitledPane text="Favorite"
+                        prefWidth="182" minWidth="182" maxWidth="182"
+                        expanded="false">
                 <graphic>
                     <ImageView>
                         <Image url="@../img/favorite16.png"/>
                     </ImageView>
                 </graphic>
-                <VBox spacing="5">
+                <VBox fx:id="favoritePlaylist" spacing="5">
                     <padding>
-                        <Insets top="10" left="24" bottom="10"/>
+                        <Insets top="10" left="30" bottom="10"/>
                     </padding>
-                    <Label text="test">
-                        <graphic>
-                            <ImageView>
-                                <Image url="@../img/play-list16.png"/>
-                            </ImageView>
-                        </graphic>
-                    </Label>
-                    <Label text="ddh"></Label>
                 </VBox>
             </TitledPane>
         </HBox>

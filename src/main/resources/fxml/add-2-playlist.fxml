@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cn.will.controller.Add2PlaylistController"
+            prefWidth="175.0" maxHeight="400">
+    <stylesheets>
+        <URL value="@../css/list.css" />
+    </stylesheets>
+    <VBox fx:id="playlistMenu" spacing="8">
+        <padding>
+            <Insets top="10" left="15"/>
+        </padding>
+    </VBox>
+</ScrollPane>

@@ -3,6 +3,7 @@ package cn.will.service;
 import cn.will.mapper.UserMapper;
 import cn.will.po.User;
 import cn.will.vo.MusicResultVO;
+import cn.will.vo.PlaylistVO;
 import fxml.Main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,16 +56,20 @@ public class UserService {
     }
 
     /**
-     * 购买音乐
-     * @param musicId
+     * 创建歌单
+     * @param title
      * @return
      */
-    public boolean puchaseMusic(int musicId){
-        return false;
-    }
-
     public boolean createPlaylist(String title){
         return userMapper.insertPlaylist(title, Main.getCurrentUser()) >0;
+    }
+
+    public List<PlaylistVO> listCreatedPlaylist(){
+        return userMapper.listUserCreatePlaylist(Main.getCurrentUser());
+    }
+
+    public List<PlaylistVO> listFavoritePlaylist(){
+        return userMapper.listUserFavoritePlaylist(Main.getCurrentUser());
     }
 
 }

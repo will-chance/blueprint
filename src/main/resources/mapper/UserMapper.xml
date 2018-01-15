@@ -32,7 +32,8 @@
             m.duration,
             am.album_id AS albumId,
             ab.title AS album,
-            a.artist_name AS artist
+            a.artist_name AS artist,
+            a.id AS artistId
         FROM
             t_user_favorite_music ufm
         LEFT JOIN t_music m ON m.id = ufm.music_id
@@ -47,7 +48,18 @@
         INSERT INTO t_play_list(title,creator_id) VALUES (#{title},#{user.id})
     </insert>
 
-    <select id="listUserCreatePlaylist">
+    <select id="listUserCreatePlaylist" resultType="PlaylistVO">
+      SELECT id,title FROM  t_play_list WHERE creator_id =#{user.id} ORDER BY gmt_create DESC
+    </select>
 
+    <select id="listUserFavoritePlaylist" resultType="PlaylistVO">
+        SELECT
+            pl.id,
+            pl.title
+        FROM
+            t_user_favorite_play_list ufpl
+        LEFT JOIN t_play_list pl ON pl.id = ufpl.play_list_id
+        WHERE
+            ufpl.user_id = #{user.id} ORDER BY ufpl.gmt_create DESC
     </select>
 </mapper>

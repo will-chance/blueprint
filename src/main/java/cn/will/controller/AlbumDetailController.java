@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -84,7 +83,7 @@ public class AlbumDetailController implements ViewController{
         ObservableList<MusicListCell> data = FXCollections.observableArrayList();
         for (int i = 0; i < musics.size(); i++) {
             MusicResultVO music = musics.get(i);
-            music.setMusicId(i+1);
+            music.setId(i+1);
             MusicListCell cell = Main.BootFX.getContext().getBean(MusicListCell.class,music);
             data.add(cell);
         }
@@ -93,11 +92,6 @@ public class AlbumDetailController implements ViewController{
 
     @Override
     public void initPrimaryStage(Stage primaryStage) {
-
-    }
-
-    @Override
-    public void setBorderPane(BorderPane loader) {
 
     }
 }

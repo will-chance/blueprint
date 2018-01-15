@@ -1,6 +1,5 @@
 package cn.will.controller;
 
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -12,7 +11,5 @@ import javafx.stage.Stage;
  */
 public interface ViewController {
     void initPrimaryStage(Stage primaryStage);
-
-    void setBorderPane(BorderPane pane);
 
 }

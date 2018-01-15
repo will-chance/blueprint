@@ -2,6 +2,7 @@ package cn.will.mapper;
 
 import cn.will.po.User;
 import cn.will.vo.MusicResultVO;
+import cn.will.vo.PlaylistVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -29,4 +30,8 @@ public interface UserMapper {
     List<MusicResultVO> listPurchaseMusicByUser(@Param("user") User user);
 
     int insertPlaylist(@Param("title") String title,@Param("user") User user);
+
+    List<PlaylistVO> listUserCreatePlaylist(@Param("user")User user);
+
+    List<PlaylistVO> listUserFavoritePlaylist(@Param("user")User user);
 }

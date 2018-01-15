@@ -86,9 +86,14 @@
                         <PropertyValueFactory property="id"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="actionColumn" text="Act" minWidth="30" maxWidth="30" prefWidth="30">
+                <TableColumn fx:id="actionColumn" minWidth="20" maxWidth="20" prefWidth="20">
                     <cellValueFactory>
                         <PropertyValueFactory property="favoriteIcon"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="" minWidth="20" maxWidth="20" prefWidth="20">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="add2PlaylistView"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="Title" minWidth="200" maxWidth="200" prefWidth="200">

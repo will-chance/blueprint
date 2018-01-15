@@ -51,8 +51,11 @@ public class UserController {
             return;
         }
         Main.setCurrentUser(user);
-        updateUserInfo(avatar,usernameLabel,user);
         loginBtn.getScene().getWindow().hide();
+        updateUserInfo(avatar,usernameLabel,user);
+        UserLeftController controller = Main.BootFX.getContext().getBean(UserLeftController.class);
+        controller.updateCreatePlaylist();
+        controller.updateFavoritePlaylist();
     }
 
     private void updateUserInfo(ImageView view,Text text,User user){

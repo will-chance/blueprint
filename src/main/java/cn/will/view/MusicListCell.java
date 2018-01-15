@@ -1,6 +1,7 @@
 package cn.will.view;
 
 import cn.will.controller.ArtistMusicController;
+import cn.will.controller.UserLeftController;
 import cn.will.service.AlbumService;
 import cn.will.service.UserService;
 import cn.will.util.FXMLLoaderHelper;
@@ -46,6 +47,8 @@ public class MusicListCell{
 
     private ImageView unfavoriteView = new ImageView(new Image("img/favorite16.png"));
 
+    private Label add2PlaylistView = new Label("",new ImageView(new Image("img/collect16.png")));
+
     private Label favoriteIcon;
 
     private boolean favorite;
@@ -67,13 +70,12 @@ public class MusicListCell{
 
     public MusicListCell(MusicResultVO music) {
         if (null == music) return;
-        int musicId = music.getMusicId();
+        int musicId = music.getId();
         if (musicId <10){
             this.id = new Text("0"+musicId);
         } else {
             this.id = new Text(String.valueOf(musicId));
         }
-
 
         this.music = music;
         this.title = new Text(music.getTitle());
@@ -81,16 +83,18 @@ public class MusicListCell{
         this.album = new Text(music.getAlbum());
         this.duration = new Text(TimeHelper.Secend2Minute(music.getDuration()));
         this.favorite = music.isFavorite();
+        add2PlaylistView.getStyleClass().add("act-btn");
+        album.getStyleClass().add("act-btn");
         initFavoriteIcon(favorite);
+        favoriteIcon.getStyleClass().add("act-btn");
         setHoverCursor(artist);
-        setHoverCursor(album);
-        setHoverCursor(favoriteIcon);
         initFavoriteAction();
         initToolTip(title);
         initToolTip(artist);
         initToolTip(album);
         initShowArtistMusicAction();
         initShowAlbumMusicAction();
+        initAdd2PlaylistAction();
     }
 
     private void initToolTip(Text text){
@@ -183,6 +187,16 @@ public class MusicListCell{
         });
     }
 
+    /**
+     * 收藏歌曲到歌单操作
+     */
+    private void initAdd2PlaylistAction(){
+        if (Main.getCurrentUser() == null) return;
+        add2PlaylistView.setOnMouseClicked(e->{
+            Main.BootFX.getContext().getBean(UserLeftController.class).showPlaylist(music.getMusicId());
+        });
+    }
+
     /********Setter/Getter todo replace with lomock***********/
 
     public Label getFavoriteIcon() {
@@ -231,5 +245,13 @@ public class MusicListCell{
 
     public void setDuration(Text duration) {
         this.duration = duration;
+    }
+
+    public Label getAdd2PlaylistView() {
+        return add2PlaylistView;
+    }
+
+    public void setAdd2PlaylistView(Label add2PlaylistView) {
+        this.add2PlaylistView = add2PlaylistView;
     }
 }

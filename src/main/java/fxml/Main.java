@@ -109,7 +109,6 @@ public class Main {
             parent = loader.load();
             ViewController controller = loader.getController();
             controller.initPrimaryStage(primaryStage);
-            controller.setBorderPane(borderPane);
             return parent;
         }
 

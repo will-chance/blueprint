@@ -40,7 +40,7 @@ public class TitleBarController implements ViewController{
 
     @Autowired private MusicService musicService;
 
-    private BorderPane root;
+    @Autowired BorderPane rootPane;
 
     @FXML private HBox titleBar;
 
@@ -126,7 +126,7 @@ public class TitleBarController implements ViewController{
             //show login stage
             Stage loginStage = new Stage();
             loginStage.initStyle(StageStyle.UNIFIED);
-            loginStage.initOwner(root.getScene().getWindow());
+            loginStage.initOwner(rootPane.getScene().getWindow());
             loginStage.initModality(Modality.APPLICATION_MODAL);
             loginStage.setResizable(false);
             FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/login.fxml");
@@ -146,7 +146,7 @@ public class TitleBarController implements ViewController{
         if (null == keyword || "".equals(keyword)) return;
         keyword = "%" + keyword + "%";
         List<MusicResultVO> musics = musicService.searchMusics(keyword);
-        root.setCenter(loadSearchResultPane(musics));
+        rootPane.setCenter(loadSearchResultPane(musics));
     }
 
     private ScrollPane loadSearchResultPane(List<MusicResultVO> musics){
@@ -170,11 +170,6 @@ public class TitleBarController implements ViewController{
     @Override
     public void initPrimaryStage(Stage primaryStage) {
         initTitleBarAction(primaryStage);
-    }
-
-    @Override
-    public void setBorderPane(BorderPane pane) {
-        this.root = pane;
     }
 
 }

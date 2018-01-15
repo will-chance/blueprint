@@ -46,7 +46,7 @@ public class SearchResultController implements ViewController{
         this.musics.clear();
         for (int i = 0; i < musics.size(); i++) {
             MusicResultVO music = musics.get(i);
-            music.setMusicId(i+1);
+            music.setId(i+1);
             MusicListCell data =  Main.BootFX.getContext().getBean(MusicListCell.class, music);
             this.musics.add(data);
         }
@@ -58,7 +58,4 @@ public class SearchResultController implements ViewController{
 
     }
 
-    @Override
-    public void setBorderPane(BorderPane pane) {
-    }
 }

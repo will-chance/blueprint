@@ -43,4 +43,18 @@ public class MusicService {
     public List<MusicResultVO> listNewest(){
         return musicMapper.listNewestMusic();
     }
+
+    /**
+     * 购买音乐
+     * @param musicId
+     * @return
+     */
+    public boolean puchaseMusic(int musicId){
+        return false;
+    }
+
+    public boolean addMusic2Playlist(int musicId,int playlistId){
+
+        return musicMapper.insertPlaylistMusic(musicId,playlistId) >0;
+    }
 }
