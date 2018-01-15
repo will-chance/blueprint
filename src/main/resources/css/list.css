@@ -104,7 +104,7 @@
 .tab-pane .tab-header-area{
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #1296db;
-    -fx-padding: 0 0 0 70;
+    -fx-padding: 0 0 0 66;
 }
 .tab-pane .tab{
     -fx-min-width: 70;

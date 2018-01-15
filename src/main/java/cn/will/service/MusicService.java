@@ -32,12 +32,24 @@ public class MusicService {
     }
 
     /**
-     * 搜索音乐
+     * 根据歌名搜索音乐
      * @param keyword
      * @return
      */
-    public List<MusicResultVO> searchMusics(String keyword){
+    public List<MusicResultVO> searchMusicByTitle(String keyword){
         return musicMapper.searchMusicByTitle(keyword, Main.getCurrentUser());
+    }
+
+    public List<MusicResultVO> searchMusicByArtist(String keyword){
+        return musicMapper.searchMusicByArtist(keyword, Main.getCurrentUser());
+    }
+
+    public List<MusicResultVO> searchMusicByAlbum(String keyword){
+        return musicMapper.searchMusicByAlbum(keyword, Main.getCurrentUser());
+    }
+
+    public List<MusicResultVO> searchMusicByPlaylist(String keyword){
+        return musicMapper.searchMusicByPlaylist(keyword, Main.getCurrentUser());
     }
 
     public List<MusicResultVO> listNewest(){

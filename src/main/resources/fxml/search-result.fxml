@@ -20,7 +20,7 @@
                 <TabPane tabClosingPolicy="UNAVAILABLE">
                     <Tab text="Music">
                         <content>
-                            <TableView fx:id="result"
+                            <TableView fx:id="titleResult"
                                        prefWidth="745" styleClass="table-header">
                                 <columns>
                                     <TableColumn text="No" sortable="false"
@@ -29,7 +29,7 @@
                                             <PropertyValueFactory property="id"/>
                                         </cellValueFactory>
                                     </TableColumn>
-                                    <TableColumn fx:id="actionColumn" sortable="false"
+                                    <TableColumn sortable="false"
                                                  minWidth="20" maxWidth="20" prefWidth="20">
                                         <cellValueFactory>
                                             <PropertyValueFactory property="favoriteIcon"/>
@@ -66,13 +66,139 @@
                         </content>
                     </Tab>
                     <Tab text="Artist">
-
+                        <TableView fx:id="artistResult"
+                                   prefWidth="745" styleClass="table-header">
+                            <columns>
+                                <TableColumn text="No" sortable="false"
+                                             minWidth="30" maxWidth="30" prefWidth="30">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="id"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn sortable="false"
+                                             minWidth="20" maxWidth="20" prefWidth="20">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="favoriteIcon"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn sortable="false"
+                                             minWidth="20" maxWidth="20" prefWidth="20">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="add2PlaylistView"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Title" minWidth="200" maxWidth="200" prefWidth="200">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="title"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Artist" minWidth="190" maxWidth="190" prefWidth="190">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="artist"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Album" minWidth="190" maxWidth="190" prefWidth="190">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="album"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Duration" minWidth="105" maxWidth="105" prefWidth="105">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="duration"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
                     </Tab>
                     <Tab text="Album">
-
+                        <TableView fx:id="albumResult"
+                                   prefWidth="745" styleClass="table-header">
+                            <columns>
+                                <TableColumn text="No" sortable="false"
+                                             minWidth="30" maxWidth="30" prefWidth="30">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="id"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn sortable="false"
+                                             minWidth="20" maxWidth="20" prefWidth="20">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="favoriteIcon"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn sortable="false"
+                                             minWidth="20" maxWidth="20" prefWidth="20">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="add2PlaylistView"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Title" minWidth="200" maxWidth="200" prefWidth="200">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="title"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Artist" minWidth="190" maxWidth="190" prefWidth="190">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="artist"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Album" minWidth="190" maxWidth="190" prefWidth="190">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="album"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Duration" minWidth="105" maxWidth="105" prefWidth="105">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="duration"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
                     </Tab>
                     <Tab text="Playlist">
-
+                        <TableView fx:id="playlistResult"
+                                   prefWidth="745" styleClass="table-header">
+                            <columns>
+                                <TableColumn text="No" sortable="false"
+                                             minWidth="30" maxWidth="30" prefWidth="30">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="id"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn sortable="false"
+                                             minWidth="20" maxWidth="20" prefWidth="20">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="favoriteIcon"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn sortable="false"
+                                             minWidth="20" maxWidth="20" prefWidth="20">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="add2PlaylistView"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Title" minWidth="200" maxWidth="200" prefWidth="200">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="title"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Artist" minWidth="190" maxWidth="190" prefWidth="190">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="artist"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Playlist" minWidth="190" maxWidth="190" prefWidth="190">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="album"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Duration" minWidth="105" maxWidth="105" prefWidth="105">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="duration"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
                     </Tab>
                 </TabPane>
             </VBox>

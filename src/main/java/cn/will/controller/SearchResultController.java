@@ -1,5 +1,6 @@
 package cn.will.controller;
 
+import cn.will.service.MusicService;
 import cn.will.view.MusicListCell;
 import cn.will.vo.MusicResultVO;
 import fxml.Main;
@@ -24,33 +25,66 @@ import java.util.List;
  */
 @Component
 public class SearchResultController implements ViewController{
-    private ObservableList<MusicListCell> musics;
+
+    @Autowired private MusicService musicService;
 
     @Autowired private BorderPane rootPane;
 
-    @FXML private TableView result;
+    private String keyword;
+
+    @FXML private TableView titleResult;
+    @FXML private TableView artistResult;
+    @FXML private TableView albumResult;
+    @FXML private TableView playlistResult;
 
     @FXML private Label resultPreview;
 
     @FXML
     private void initialize(){
-        result.setPlaceholder(new Label("No Relative Result"));
-        musics = FXCollections.observableArrayList();
+        titleResult.setPlaceholder(new Label("No Music"));
+        artistResult.setPlaceholder(new Label("No Music"));
+        albumResult.setPlaceholder(new Label("No Music"));
+        playlistResult.setPlaceholder(new Label("No Music"));
     }
 
-    public void setData(List<MusicResultVO> musics){
+    public void setData(List<MusicResultVO> musics,String keyword){
+        this.keyword = keyword;
         if (null == musics || musics.isEmpty()) {
             resultPreview.setText("Not Relative Result");
             return;
         }
-        this.musics.clear();
+        ObservableList<MusicListCell> datas = getMusicListCells(musics);
+        titleResult.setItems(datas);
+        searchMusicByArtist();
+        searchMusicByAlbum();
+        searchMusicByPlaylist();
+    }
+
+    private ObservableList<MusicListCell> getMusicListCells(List<MusicResultVO> musics) {
+        ObservableList<MusicListCell> datas = FXCollections.observableArrayList();
         for (int i = 0; i < musics.size(); i++) {
             MusicResultVO music = musics.get(i);
             music.setId(i+1);
             MusicListCell data =  Main.BootFX.getContext().getBean(MusicListCell.class, music);
-            this.musics.add(data);
+            datas.add(data);
         }
-        result.setItems(this.musics);
+        return datas;
+    }
+
+    @FXML
+    private void searchMusicByArtist(){
+        List<MusicResultVO> musics = musicService.searchMusicByArtist(keyword);
+        artistResult.setItems(getMusicListCells(musics));
+    }
+
+    private void searchMusicByAlbum(){
+        List<MusicResultVO> musics = musicService.searchMusicByAlbum(keyword);
+        albumResult.setItems(getMusicListCells(musics));
+    }
+
+    private void searchMusicByPlaylist(){
+        List<MusicResultVO> musics = musicService.searchMusicByPlaylist(keyword);
+        playlistResult.setItems(getMusicListCells(musics));
     }
 
     @Override

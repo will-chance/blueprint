@@ -54,6 +54,122 @@
             </if>
     </select>
 
+    <select id="searchMusicByArtist" resultType="MusicResultVO">
+        SELECT
+            a.*
+        <if test="user != null">
+            ,ufm.favorite
+        </if>
+        FROM
+            (
+                SELECT
+                    m.id AS musicId,
+                    m.title,
+                    a.artist_name AS artist,
+                    a.id AS artistId,
+                    ab.id AS albumId,
+                    ab.title AS album,
+                    m.duration
+                FROM
+                    t_artist a
+                LEFT JOIN t_music m ON a.id = m.artist_id
+                LEFT JOIN t_album_music am ON am.music_id = m.id
+                LEFT JOIN t_album ab ON ab.id = am.album_id
+                WHERE
+                    a.artist_name LIKE #{keyword}
+                ORDER BY m.play_times DESC
+            ) a
+        <if test="user != null">
+        LEFT OUTER JOIN (
+            SELECT
+                1 AS favorite,
+                music_id
+            FROM
+                t_user_favorite_music
+            WHERE
+                user_id = #{user.id}
+        ) ufm ON ufm.music_id = a.musicId
+        </if>
+    </select>
+
+    <select id="searchMusicByAlbum" resultType="MusicResultVO">
+        SELECT
+            a.*
+            <if test="user != null">
+            , ufm.favorite
+            </if>
+        FROM
+            (
+                SELECT
+                    m.id AS musicId,
+                    m.title,
+                    a.artist_name AS artist,
+                    a.id AS artistId,
+                    ab.id AS albumId,
+                    ab.title AS album,
+                    m.duration
+                FROM
+                    t_album ab
+                LEFT JOIN t_album_music am ON am.album_id = ab.id
+                LEFT JOIN t_music m ON am.music_id = m.id
+                LEFT JOIN t_artist a ON a.id = m.artist_id
+                WHERE
+                    ab.title LIKE #{keyword}
+                ORDER BY
+                    m.play_times
+            ) a
+        <if test="user != null">
+        LEFT OUTER JOIN (
+            SELECT
+                1 AS favorite,
+                music_id
+            FROM
+                t_user_favorite_music
+            WHERE
+                user_id = #{user.id}
+        ) ufm ON ufm.music_id = a.musicId
+        </if>
+    </select>
+
+    <select id="searchMusicByPlaylist" resultType="MusicResultVO">
+        SELECT
+            a.*
+        <if test="user != null">
+            , ufm.favorite
+        </if>
+        FROM
+            (
+                SELECT
+                    m.id AS musicId,
+                    m.title,
+                    a.artist_name AS artist,
+                    a.id AS artistId,
+                    pl.id AS albumId,
+                    pl.title AS album,
+                    m.duration
+                FROM
+                    t_play_list pl
+                LEFT JOIN t_play_list_music plm ON plm.play_list_id = pl.id
+                LEFT JOIN t_music m ON plm.music_id = m.id
+                LEFT JOIN t_artist a ON a.id = m.artist_id
+                WHERE
+                    pl.title LIKE #{keyword}
+                ORDER BY
+                    m.play_times
+            ) a
+        <if test="user != null">
+            LEFT OUTER JOIN (
+            SELECT
+            1 AS favorite,
+            music_id
+            FROM
+            t_user_favorite_music
+            WHERE
+            user_id = #{user.id}
+            ) ufm ON ufm.music_id = a.musicId
+        </if>
+    </select>
+
     <insert id="insertBatch">
         INSERT INTO t_music
         (id,title,artist_id,`language`,publish_time,lyric,play_times,duration,cover_img) VALUES

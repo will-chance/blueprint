@@ -3,6 +3,7 @@ package cn.will.controller;
 import cn.will.po.User;
 import cn.will.service.MusicService;
 import cn.will.util.FXMLLoaderHelper;
+import cn.will.util.ViewHelper;
 import cn.will.vo.MusicResultVO;
 import fxml.Main;
 import javafx.application.Platform;
@@ -145,17 +146,12 @@ public class TitleBarController implements ViewController{
         String keyword = searchContent.getText();
         if (null == keyword || "".equals(keyword)) return;
         keyword = "%" + keyword + "%";
-        List<MusicResultVO> musics = musicService.searchMusics(keyword);
-        rootPane.setCenter(loadSearchResultPane(musics));
+        List<MusicResultVO> musics = musicService.searchMusicByTitle(keyword);
+        rootPane.setCenter(loadSearchResultPane(musics,keyword));
     }
 
-    private ScrollPane loadSearchResultPane(List<MusicResultVO> musics){
-        Parent pane = null;
-        FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/search-result.fxml");
-        pane = FXMLLoaderHelper.load(loader);
-        SearchResultController controller = loader.getController();
-        controller.setData(musics);
-        return (ScrollPane) pane;
+    private ScrollPane loadSearchResultPane(List<MusicResultVO> musics,String keyword){
+        return ViewHelper.loadSearchResultPane(musics,keyword);
     }
 
     private void setCursorChangeOnHover(HBox hBox){

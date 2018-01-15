@@ -81,17 +81,19 @@
         </HBox>
         <TableView fx:id="musicList" prefWidth="745" styleClass="table-header">
             <columns>
-                <TableColumn text="No" minWidth="30" maxWidth="30" prefWidth="30">
+                <TableColumn text="No" sortable="false"
+                             minWidth="30" maxWidth="30" prefWidth="30">
                     <cellValueFactory>
                         <PropertyValueFactory property="id"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="actionColumn" minWidth="20" maxWidth="20" prefWidth="20">
+                <TableColumn sortable="false"
+                        minWidth="20" maxWidth="20" prefWidth="20">
                     <cellValueFactory>
                         <PropertyValueFactory property="favoriteIcon"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="" minWidth="20" maxWidth="20" prefWidth="20">
+                <TableColumn sortable="false" minWidth="20" maxWidth="20" prefWidth="20">
                     <cellValueFactory>
                         <PropertyValueFactory property="add2PlaylistView"/>
                     </cellValueFactory>
@@ -106,7 +108,7 @@
                         <PropertyValueFactory property="artist"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Album" minWidth="190" maxWidth="190" prefWidth="190">
+                <TableColumn text="Album/Playlist" minWidth="190" maxWidth="190" prefWidth="190">
                     <cellValueFactory>
                         <PropertyValueFactory property="album"/>
                     </cellValueFactory>

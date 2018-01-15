@@ -1,6 +1,7 @@
 package cn.will.util;
 
 import cn.will.controller.AlbumDetailController;
+import cn.will.controller.SearchResultController;
 import cn.will.vo.MusicResultVO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,6 +29,15 @@ public class ViewHelper {
         Parent pane = FXMLLoaderHelper.load(loader);
         AlbumDetailController controller = loader.getController();
         controller.setData(data);
+        return (ScrollPane) pane;
+    }
+
+    public static ScrollPane loadSearchResultPane(List<MusicResultVO> musics,String keyword){
+        Parent pane = null;
+        FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/search-result.fxml");
+        pane = FXMLLoaderHelper.load(loader);
+        SearchResultController controller = loader.getController();
+        controller.setData(musics,keyword);
         return (ScrollPane) pane;
     }
 
