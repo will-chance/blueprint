@@ -1,6 +1,7 @@
 package cn.will.controller;
 
 import cn.will.po.User;
+import cn.will.service.MusicService;
 import cn.will.service.UserService;
 import cn.will.util.FXMLLoaderHelper;
 import cn.will.util.ViewHelper;
@@ -42,6 +43,8 @@ public class UserLeftController implements ViewController {
     @Autowired private BorderPane rootPane;
 
     @Autowired private UserService userService;
+
+    @Autowired private MusicService musicService;
 
     @FXML private Label purchaseMusicLabel;
     @FXML private Label favoriteMusicLabel;
@@ -126,7 +129,9 @@ public class UserLeftController implements ViewController {
         List<Label> labels = new ArrayList<>();
         for (PlaylistVO playlist:data) {
             Label label = new Label(playlist.getTitle(),new ImageView(new Image("img/play-list16.png")));
-            label.setId(String.valueOf(playlist.getId()));
+            label.setOnMouseClicked(e->{
+                showPlaylistMusic(playlist.getId());
+            });
             Tooltip tip = new Tooltip(playlist.getTitle());
             Tooltip.install(label,tip);
             label.getStyleClass().add("playlist");
@@ -149,6 +154,11 @@ public class UserLeftController implements ViewController {
         }
         favoritePlaylist.getChildren().clear();
         favoritePlaylist.getChildren().addAll(labels);
+    }
+
+    private void showPlaylistMusic(int playlistId){
+        List<MusicResultVO> musics = musicService.listPlaylistMusicById(playlistId);
+        rootPane.setCenter(ViewHelper.loadPlayListPane(musics));
     }
 
     @Override

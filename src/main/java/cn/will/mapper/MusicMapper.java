@@ -26,4 +26,6 @@ public interface MusicMapper {
                                            @Param("user")User user);
 
     int insertPlaylistMusic(@Param("musicId")int musicId,@Param("playlistId")int playlistId);
+
+    List<MusicResultVO> listPlaylistMusicById(@Param("playlistId") int playlistId,@Param("user")User user);
 }

@@ -74,4 +74,42 @@
         INSERT INTO t_play_list_music(music_id,play_list_id) VALUES
         (#{musicId},#{playlistId})
     </insert>
+
+    <select id="listPlaylistMusicById" resultType="MusicResultVO">
+        SELECT
+            a.*
+            <if test="user != null">
+                , ufm.favorite
+            </if>
+        FROM
+            (
+                SELECT
+                    plm.music_id AS musicId,
+                    m.title,
+                    m.duration,
+                    a.artist_name AS artist,
+                    a.id AS artistId,
+                    ab.id AS albumId,
+                    ab.title AS album
+                FROM
+                    t_play_list_music plm
+                LEFT JOIN t_music m ON m.id = plm.music_id
+                LEFT JOIN t_artist a ON a.id = m.artist_id
+                LEFT JOIN t_album_music am ON am.music_id = plm.music_id
+                LEFT JOIN t_album ab ON ab.id = am.album_id
+                WHERE
+                    plm.play_list_id = #{playlistId}
+            ) a
+        <if test="user != null">
+        LEFT JOIN (
+            SELECT
+                1 AS favorite,
+                music_id
+            FROM
+                t_user_favorite_music
+            WHERE
+                user_id = #{user.id}
+        ) ufm ON ufm.music_id = a.musicId
+        </if>
+    </select>
 </mapper>

@@ -57,4 +57,8 @@ public class MusicService {
 
         return musicMapper.insertPlaylistMusic(musicId,playlistId) >0;
     }
+
+    public List<MusicResultVO> listPlaylistMusicById(int playlistId){
+        return musicMapper.listPlaylistMusicById(playlistId,Main.getCurrentUser());
+    }
 }

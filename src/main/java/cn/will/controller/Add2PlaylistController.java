@@ -39,13 +39,12 @@ public class Add2PlaylistController {
             PlaylistVO playlist = data.get(i);
             String name =playlist.getTitle();
             Label label = new Label(name,new ImageView(new Image("img/play-list16.png")));
-            label.setId(String.valueOf(playlist.getId()));
             label.setMaxWidth(150);
             label.setPrefWidth(150);
             label.setOnMouseClicked(e->{
                 String id = label.getId();
                 System.out.println(musicId + " playlistId:" +id);
-                if (addMusic2Playlist(musicId, Integer.parseInt(id))){
+                if (addMusic2Playlist(musicId, playlist.getId())){
                     label.getScene().getWindow().hide();
                 }
 
