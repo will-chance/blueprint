@@ -228,4 +228,10 @@
         ) ufm ON ufm.music_id = a.musicId
         </if>
     </select>
+
+    <select id="selectByUniqueKey" resultType="PlaylistVO">
+        SELECT
+          plm.id
+        FROM t_play_list_music plm WHERE plm.music_id = #{musicId} AND plm.play_list_id = #{playlistId}
+    </select>
 </mapper>

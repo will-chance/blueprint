@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -47,17 +48,11 @@ public class SearchResultController implements ViewController{
         playlistResult.setPlaceholder(new Label("No Music"));
     }
 
-    public void setData(List<MusicResultVO> musics,String keyword){
-        this.keyword = keyword;
-        if (null == musics || musics.isEmpty()) {
-            resultPreview.setText("Not Relative Result");
-            return;
-        }
-        ObservableList<MusicListCell> datas = getMusicListCells(musics);
-        titleResult.setItems(datas);
-        searchMusicByArtist();
-        searchMusicByAlbum();
-        searchMusicByPlaylist();
+    public void setData(HashMap<String,List<MusicResultVO>> data){
+        titleResult.setItems(getMusicListCells(data.get("titleResult")));
+        artistResult.setItems(getMusicListCells(data.get("artistResult")));
+        albumResult.setItems(getMusicListCells(data.get("albumResult")));
+        playlistResult.setItems(getMusicListCells(data.get("playlistResult")));
     }
 
     private ObservableList<MusicListCell> getMusicListCells(List<MusicResultVO> musics) {

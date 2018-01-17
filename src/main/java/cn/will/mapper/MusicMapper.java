@@ -4,6 +4,7 @@ import cn.will.po.AlbumMusic;
 import cn.will.po.Music;
 import cn.will.po.User;
 import cn.will.vo.MusicResultVO;
+import cn.will.vo.PlaylistVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -37,4 +38,6 @@ public interface MusicMapper {
     int insertPlaylistMusic(@Param("musicId")int musicId,@Param("playlistId")int playlistId);
 
     List<MusicResultVO> listPlaylistMusicById(@Param("playlistId") int playlistId,@Param("user")User user);
+
+    PlaylistVO selectByUniqueKey(@Param("musicId") int musicId,@Param("playlistId") int playlistId);
 }

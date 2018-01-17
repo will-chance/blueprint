@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,12 +33,12 @@ public class ViewHelper {
         return (ScrollPane) pane;
     }
 
-    public static ScrollPane loadSearchResultPane(List<MusicResultVO> musics,String keyword){
+    public static ScrollPane loadSearchResultPane(HashMap<String,List<MusicResultVO>> data){
         Parent pane = null;
         FXMLLoader loader = FXMLLoaderHelper.createLoader("fxml/search-result.fxml");
         pane = FXMLLoaderHelper.load(loader);
         SearchResultController controller = loader.getController();
-        controller.setData(musics,keyword);
+        controller.setData(data);
         return (ScrollPane) pane;
     }
 

@@ -61,7 +61,6 @@ public class Add2PlaylistController {
      */
     private boolean addMusic2Playlist(int musicId,int playlistId){
         if (Main.getCurrentUser() == null) return false;
-        //todo 1.判断该音乐是否已经在歌单中，如果已存在。不重复添加 --> 提示
         return musicService.addMusic2Playlist(musicId,playlistId);
     }
 }

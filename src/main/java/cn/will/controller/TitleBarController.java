@@ -27,6 +27,7 @@ import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -146,12 +147,16 @@ public class TitleBarController implements ViewController{
         String keyword = searchContent.getText();
         if (null == keyword || "".equals(keyword)) return;
         keyword = "%" + keyword + "%";
-        List<MusicResultVO> musics = musicService.searchMusicByTitle(keyword);
-        rootPane.setCenter(loadSearchResultPane(musics,keyword));
+        HashMap<String,List<MusicResultVO>> data = new HashMap<>();
+        data.put("titleResult",musicService.searchMusicByTitle(keyword));
+        data.put("artistResult",musicService.searchMusicByArtist(keyword));
+        data.put("albumResult",musicService.searchMusicByAlbum(keyword));
+        data.put("playlistResult",musicService.searchMusicByPlaylist(keyword));
+        rootPane.setCenter(loadSearchResultPane(data));
     }
 
-    private ScrollPane loadSearchResultPane(List<MusicResultVO> musics,String keyword){
-        return ViewHelper.loadSearchResultPane(musics,keyword);
+    private ScrollPane loadSearchResultPane(HashMap<String,List<MusicResultVO>> data){
+        return ViewHelper.loadSearchResultPane(data);
     }
 
     private void setCursorChangeOnHover(HBox hBox){
