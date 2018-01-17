@@ -66,7 +66,7 @@ public class MusicService {
     }
 
     public boolean addMusic2Playlist(int musicId,int playlistId){
-        if (musicMapper.selectByUniqueKey(musicId,playlistId)== null) return false;
+        if (musicMapper.selectByUniqueKey(musicId,playlistId)!= null) return false;
         return musicMapper.insertPlaylistMusic(musicId,playlistId) >0;
     }
 
